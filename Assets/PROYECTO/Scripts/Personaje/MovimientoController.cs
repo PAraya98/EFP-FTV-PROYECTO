@@ -48,12 +48,15 @@ public class MovimientoController : MonoBehaviour
     [ReadOnly] [SerializeField] private CompositeCollider2D checkPiso;
     [BoxGroup("Dependencias")]
     [ReadOnly] [SerializeField] private int layerPiso;
+    [BoxGroup("Dependencias")]
+    [ReadOnly] [SerializeField] private Collider2D pies;
 
     void Start()
     {
         Application.targetFrameRate = 60;
         layerPiso = LayerMask.NameToLayer("Piso");
         checkPiso = GameObject.Find("Tilemap - Escenario").GetComponent<CompositeCollider2D>();
+        pies = gameObject.transform.Find("pies").GetComponent<Collider2D>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.mass = masa;
         playerCollider = gameObject.GetComponent<Collider2D>();
@@ -87,7 +90,7 @@ public class MovimientoController : MonoBehaviour
         {
             corriendo = false;
         }
-        GirarPersonaje();
+        GirarPersonaje();        
     }
 
     private void FixedUpdate()
@@ -98,7 +101,7 @@ public class MovimientoController : MonoBehaviour
         }
         else if (corriendo && !estaEnPiso) // Si esta corriendo en el aire xD
         {
-            rb.velocity = new Vector2(fuerzaDeMA * mirandoHacia * velocidadCaminando, rb.velocity.y);
+            rb.velocity = new Vector2(fuerzaDeMA * mirandoHacia * velocidadCorriendo, rb.velocity.y);
         }
         else if (!corriendo && estaEnPiso) // Si esta caminando en el piso
         {
@@ -112,18 +115,20 @@ public class MovimientoController : MonoBehaviour
         {
             Debug.Log("ENTRE AL ELSE UnU");
         }
+        //if (pies.IsTouchingLayers(layerPiso)) -> no funciona
+        // https://answers.unity.com/questions/1321643/istouchinglayers-is-not-working.html
+        //{
+        Debug.Log(LayerMask.GetMask(new string[] { "Piso" }));
+        if (pies.IsTouchingLayers(LayerMask.GetMask(new string[] { "Piso" })))
+        { 
+            estaEnPiso = true; 
+        }
+        else
+        {
+            estaEnPiso = false;
+        }
     }
 
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == layerPiso) estaEnPiso = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == layerPiso) estaEnPiso = false;
-    }
 
     void GirarPersonaje()
     {
@@ -136,4 +141,3 @@ public class MovimientoController : MonoBehaviour
         }
     }
 }
-

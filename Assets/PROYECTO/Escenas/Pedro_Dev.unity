@@ -12764,6 +12764,18 @@ PrefabInstance:
       propertyPath: velocidadCaminando
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 2751252231889104851, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711139519764518400, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
+      propertyPath: m_Size.y
+      value: 0.005961418
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711139519764518400, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.47367334
+      objectReference: {fileID: 0}
     - target: {fileID: 8003803409600286191, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_Enabled
       value: 1

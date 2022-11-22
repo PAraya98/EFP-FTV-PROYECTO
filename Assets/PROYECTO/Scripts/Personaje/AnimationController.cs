@@ -25,36 +25,40 @@ public class AnimationController : MonoBehaviour
     [ReadOnly] [SerializeField] private Rigidbody2D rb;
     [BoxGroup("Dependencias")]
     [ReadOnly] [SerializeField] private int layerPiso;
+    [BoxGroup("Dependencias")]
+    [ReadOnly] [SerializeField] private Collider2D pies;
+
     void Start()
     {
         layerPiso = LayerMask.NameToLayer("Piso");
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
+        pies = gameObject.transform.Find("pies").GetComponent<Collider2D>();
     }
 
     void FixedUpdate()
-    {   
-        
-        if (Mathf.Abs(rb.velocity.x) <= velocidadCorriendo-0.1f && Mathf.Abs(rb.velocity.x) > 0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("caminando")) 
+    {
+
+        if (Mathf.Abs(rb.velocity.x) <= velocidadCorriendo - 0.1f && Mathf.Abs(rb.velocity.x) > 0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("caminando"))
             animator.Play("caminando");
-        else if (Mathf.Abs(rb.velocity.x) >= velocidadCorriendo-0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("corriendo")) 
+        else if (Mathf.Abs(rb.velocity.x) >= velocidadCorriendo - 0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("corriendo"))
             animator.Play("corriendo");
-        else if (!estaEnPiso && rb.velocity.y > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("salto")) 
+        else if (!estaEnPiso && rb.velocity.y > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("salto"))
             animator.Play("salto");
-        else if (!estaEnPiso && rb.velocity.y < 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("caida")) 
+        else if (!estaEnPiso && rb.velocity.y < 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("caida"))
             animator.Play("caida");
         else if (Mathf.Abs(rb.velocity.x) < 0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
             animator.Play("idle");
-    }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == layerPiso) estaEnPiso = true;
+        if (pies.IsTouchingLayers(LayerMask.GetMask(new string[] { "Piso" })))
+        {
+            estaEnPiso = true;
+        }
 
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == layerPiso) estaEnPiso = false;
+        else
+        {
+            estaEnPiso = false;
+        }
     }
 }
+
