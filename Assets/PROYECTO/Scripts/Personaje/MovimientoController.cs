@@ -6,15 +6,16 @@ public class MovimientoController : MonoBehaviour
 {
     // Inspector
     //Inputs del inspector
-    [BoxGroup("Constantes del personaje")]
-    [ReadOnly]
+    [BoxGroup("Constantes del personaje")]    
     public float velocidadCaminando = 3f;
-    [BoxGroup("Constantes del personaje")]
-    [ReadOnly]
+    [BoxGroup("Constantes del personaje")]    
     public float velocidadCorriendo = 4f;
-    [BoxGroup("Constantes del personaje")]
-    [ReadOnly]
+    [BoxGroup("Constantes del personaje")]    
     public float fuerzaDeSalto = 16f;
+
+    [BoxGroup("Constantes del personaje")]
+    public float fuerzaDeMA= 0.1f;
+
     [BoxGroup("Constantes del personaje")]
     [ReadOnly]
     public float masa = 1f;
@@ -91,11 +92,26 @@ public class MovimientoController : MonoBehaviour
 
     private void FixedUpdate()
     {   // Se asigna la velocidad de movimiento
-
-        rb.velocity = new Vector2(
-            (System.Convert.ToSingle(!corriendo) * mirandoHacia * velocidadCaminando) +
-            (System.Convert.ToSingle(corriendo) * mirandoHacia * velocidadCorriendo)
-            , rb.velocity.y);
+        if(corriendo && estaEnPiso) // Si esta corriendo en el piso
+        {
+            rb.velocity = new Vector2(mirandoHacia * velocidadCorriendo, rb.velocity.y);
+        }
+        else if (corriendo && !estaEnPiso) // Si esta corriendo en el aire xD
+        {
+            rb.velocity = new Vector2(fuerzaDeMA * mirandoHacia * velocidadCaminando, rb.velocity.y);
+        }
+        else if (!corriendo && estaEnPiso) // Si esta caminando en el piso
+        {
+            rb.velocity = new Vector2(mirandoHacia * velocidadCaminando, rb.velocity.y);
+        }
+        else if (!corriendo && !estaEnPiso) // Si esta caminando en el aire
+        {
+            rb.velocity = new Vector2(fuerzaDeMA * mirandoHacia * velocidadCaminando, rb.velocity.y);
+        }
+        else
+        {
+            Debug.Log("ENTRE AL ELSE UnU");
+        }
     }
 
 

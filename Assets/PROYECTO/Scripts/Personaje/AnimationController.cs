@@ -35,7 +35,7 @@ public class AnimationController : MonoBehaviour
     void FixedUpdate()
     {   
         
-        if (Mathf.Abs(rb.velocity.x) <= velocidadCorriendo-0.1f && Mathf.Abs(rb.velocity.x) >= velocidadCaminando/2 && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("caminando")) 
+        if (Mathf.Abs(rb.velocity.x) <= velocidadCorriendo-0.1f && Mathf.Abs(rb.velocity.x) > 0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("caminando")) 
             animator.Play("caminando");
         else if (Mathf.Abs(rb.velocity.x) >= velocidadCorriendo-0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("corriendo")) 
             animator.Play("corriendo");
@@ -43,7 +43,7 @@ public class AnimationController : MonoBehaviour
             animator.Play("salto");
         else if (!estaEnPiso && rb.velocity.y < 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("caida")) 
             animator.Play("caida");
-        else if (Mathf.Abs(rb.velocity.x) < velocidadCaminando/2 && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+        else if (Mathf.Abs(rb.velocity.x) < 0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
             animator.Play("idle");
     }
 
