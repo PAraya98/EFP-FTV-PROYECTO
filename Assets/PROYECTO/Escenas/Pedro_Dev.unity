@@ -10099,6 +10099,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 981013283}
+  - component: {fileID: 981013284}
   m_Layer: 0
   m_Name: Jugadores
   m_TagString: Untagged
@@ -10125,6 +10126,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &981013284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981013282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a215d4b92bd96a4aa63049b06a24006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 8003803409600286202, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
+  tienePlayer1: 0
+  tienePlayer2: 0
+  tienePlayer3: 0
+  tienePlayer4: 0
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  player3: {fileID: 0}
+  player4: {fileID: 0}
 --- !u!1 &1193270477
 GameObject:
   m_ObjectHideFlags: 0
