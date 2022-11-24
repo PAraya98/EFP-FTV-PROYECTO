@@ -9,33 +9,11 @@ public class RespawnController : MonoBehaviour
     [BoxGroup("Valores requeridos")]
     public GameObject playerPrefab;
     [BoxGroup("Valores requeridos")]
-    public GameObject playerInputPrefab;
-    //Variables del juego en movimiento
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
-    public bool tienePlayer1 = false;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
-    public bool tienePlayer2 = false;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
-    public bool tienePlayer3 = false;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
-    public bool tienePlayer4 = false;
+    public GameObject playerInputPrefab; 
 
-    [BoxGroup("Dependencias")] [ReadOnly]
-    public GameObject player1;
-    [BoxGroup("Dependencias")] [ReadOnly]
-    public GameObject player2;
-    [BoxGroup("Dependencias")] [ReadOnly]
-    public GameObject player3;  
-    [BoxGroup("Dependencias")] [ReadOnly]
-    public GameObject player4;
-
-    [ReadOnly] [SerializeField] private PlayerInputManager jugadorControl;
-
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private List<GameObject> listaPlayer;
+
     private Vector3[] listaPlayerPosicion;
     private Color[] listaPlayerColor;
     private Gamepad[] listaPlayerMando;
@@ -60,8 +38,10 @@ public class RespawnController : MonoBehaviour
 
     void Start()
     {
-
-        jugadorControl = gameObject.GetComponent<PlayerInputManager>();
+        GameObject player1 = GameObject.Find("Player 1");
+        GameObject player2 = GameObject.Find("Player 2");
+        GameObject player3 = GameObject.Find("Player 3");
+        GameObject player4 = GameObject.Find("Player 4");
 
         listaPlayer = new List<GameObject> { player1, player2, player3, player4 };
         listaPlayerPosicion = new Vector3[] { player1.transform.position, player2.transform.position, player3.transform.position, player4.transform.position };
@@ -69,34 +49,39 @@ public class RespawnController : MonoBehaviour
         listaPlayerMando = new Gamepad[] {new Gamepad(), new Gamepad(), new Gamepad(), new Gamepad() };
         int i = 0;
 
-        foreach (Gamepad mando in Gamepad.all) {
-            if (i < 4)
+        foreach (GameObject player in listaPlayer)
+        {
+            Debug.Log(Gamepad.all.Count);
+            if(Gamepad.all.Count > i)
             {
-                listaPlayer[i].SetActive(true);
+                player.SetActive(true);
                 listaPlayerMando[i] = Gamepad.all[i];
-                agregarInput(listaPlayer[i], "Gamepad", new InputDevice[] { Gamepad.all[i] }); 
+                agregarInput(listaPlayer[i], "Gamepad", new InputDevice[] { Gamepad.all[i] });
+            }
+            else
+            {
+                player.SetActive(false);
             }
             i++;
-        }
-        
+        }    
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         //TODO: CREAR EL JUGADOR -> HACERLO HIJO DE JUGADDORAES -> DEFINIR PARÁMETROS INICIALES
-        int i = 0;
-        foreach (GameObject player in listaPlayer)
-        { 
-            if(!player)
+
+        for (int i = 0; i < listaPlayer.Count; i++)
+        {
+            if (!listaPlayer[i])
             {
-                listaPlayer.RemoveAt(i);// ARREGLAR NO FUNCIONA LA ASIGNACIÓN DENTRO DEL ARRAY
+                listaPlayer.RemoveAt(i);
                 GameObject aux = Instantiate(playerPrefab);
                 aux.transform.SetParent(gameObject.transform);
                 aux.transform.position = listaPlayerPosicion[i];
                 aux.GetComponent<SpriteRenderer>().color = listaPlayerColor[i];
                 aux.name = "Player " + (i + 1);
-                agregarInput(aux, "Gamepad", new InputDevice[] { listaPlayerMando[i]});
+                agregarInput(aux, "Gamepad", new InputDevice[] { listaPlayerMando[i] });
                 listaPlayer.Insert(i, aux);
             }
         }
