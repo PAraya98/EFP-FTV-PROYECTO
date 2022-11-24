@@ -61,6 +61,7 @@ public class RespawnController : MonoBehaviour
             else
             {
                 player.SetActive(false);
+                GameObject.Find("Panel Info - Player "+ (i+1)).SetActive(false);
             }
             i++;
         }    
