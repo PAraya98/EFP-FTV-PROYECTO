@@ -22,25 +22,26 @@ public class MovimientoController : MonoBehaviour
     [ReadOnly]
     public float masa = 1f;
     //Variables del personaje en movimiento
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
+    [BoxGroup("Variables en tiempo real")] [ReadOnly]
     public float velocidadHorizontal;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
+    [BoxGroup("Variables en tiempo real")] [ReadOnly]
     public float velocidadVertical;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
+    [BoxGroup("Variables en tiempo real")] [ReadOnly]
     public float mirandoHacia;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
+    [BoxGroup("Variables en tiempo real")] [ReadOnly]
     public bool estaMirandoDerecha = true;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
+    [BoxGroup("Variables en tiempo real")] [ReadOnly]
     public bool estaEnPiso;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
+    [BoxGroup("Variables en tiempo real")] [ReadOnly]
     public bool corriendo = false;
 
+    //Controles del personaje
+    [BoxGroup("Controles del personaje")] [ReadOnly]
+    public float mover;
+    [BoxGroup("Controles del personaje")] [ReadOnly]
+    public bool salto;
+    [BoxGroup("Controles del personaje")] [ReadOnly]
+    public bool correr;
     //Variables privadas obtenidas desde otros gameObject
     [BoxGroup("Dependencias")]
     [ReadOnly] [SerializeField] private Rigidbody2D rb;
@@ -77,27 +78,27 @@ public class MovimientoController : MonoBehaviour
         velocidadVertical = rb.velocity.y;
         rb.mass = masa;
 #endif
-        
-        Debug.Log(playerInput.actions["Move"].ReadValue<Vector2>());
-        mirandoHacia = Input.GetAxisRaw("Horizontal");
-        /*
-        if (Input.GetButtonDown("Jump") && estaEnPiso)
+        mover = playerInput.actions["mover"].ReadValue<Vector2>().x;
+        mirandoHacia = mover == 0 ? 0 : mover > 0 ? 1 : -1;
+        salto = playerInput.actions["salto"].IsPressed();
+        correr = playerInput.actions["correr"].IsPressed();
+        if (salto && estaEnPiso)
         {
             rb.velocity = new Vector2(rb.velocity.x, fuerzaDeSalto);
         }
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        if (!salto && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-        if (Input.GetButtonDown("Fire3"))
+        if (correr)
         {
             corriendo = true;
         }
-        if (Input.GetButtonUp("Fire3"))
+        if (!correr)
         {
             corriendo = false;
         }
-        */
+
         GirarPersonaje();        
     }
 

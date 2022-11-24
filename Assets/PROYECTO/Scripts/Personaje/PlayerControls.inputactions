@@ -2,22 +2,40 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Player",
-            "id": "6e8b0383-dc61-4a1d-a25e-bd513ee85145",
+            "name": "gameplay",
+            "id": "265c38f5-dd18-4d34-b198-aec58e1627ff",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "fire",
+                    "type": "Button",
+                    "id": "1077f913-a9f9-41b1-acb3-b9ee0adbc744",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,SlowTap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "mover",
                     "type": "Value",
-                    "id": "ff930c90-52e6-4b61-b2ce-b1560c42fdb0",
+                    "id": "50fd2809-3aa3-4a90-988e-1facf6773553",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "salto",
                     "type": "Button",
-                    "id": "f7078600-17cd-4fa4-8832-d221cb1835fe",
+                    "id": "3e9d60de-7960-4ee9-ae97-c21bab982367",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press,Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "correr",
+                    "type": "Button",
+                    "id": "66bd17de-2543-4341-b8aa-376b25d47ef0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -27,132 +45,127 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "5add8a5f-a324-4e8f-852f-d9e67289cf53",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Switch",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "70039278-769e-42d1-9f73-c07cacac2e49",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a592a8ad-5ede-48ea-bef1-d3beaa823717",
-                    "path": "<DualShockGamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PS5",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "WASD",
-                    "id": "f68f0573-2f8d-472e-a07b-22e1918d83e0",
-                    "path": "2DVector",
+                    "id": "abb776f3-f329-4f7b-bbf8-b577d13be018",
+                    "path": "*/{PrimaryAction}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1b8c4dd-7b3a-4db6-a93a-0889b59b1afc",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "mover",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Dpad",
+                    "id": "cefc16fc-557a-44b0-939f-2ad792876b07",
+                    "path": "Dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "mover",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "up",
-                    "id": "1a760632-8042-4705-bb2c-77461c4b1608",
+                    "id": "07244659-79df-461d-b329-defbe2fbc5f6",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Move",
+                    "groups": "",
+                    "action": "mover",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "415b1fdc-304e-42c5-a0fc-295c14e984ee",
-                    "path": "<Keyboard>/a",
+                    "id": "f0ec75cb-f02c-40d2-a33f-1fd6eab2ae0b",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Move",
+                    "groups": "",
+                    "action": "mover",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "27015efd-f896-4999-920d-94cc8408d34e",
-                    "path": "<Keyboard>/s",
+                    "id": "21fe6bfe-4721-4483-9f4a-a0031ade105c",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Move",
+                    "groups": "",
+                    "action": "mover",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "3e8ad0c3-2676-44c9-bbb0-d922bd94aaff",
+                    "id": "2dd39746-c75c-4a11-838a-e59eacaf4e0b",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Move",
+                    "groups": "",
+                    "action": "mover",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "a98a78a2-400e-482c-81c0-743aac14ee30",
-                    "path": "<DualSenseGamepadHID>/leftStick",
+                    "id": "0281a573-7900-4261-bcbe-bac975b4a4fd",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PS5",
-                    "action": "Move",
+                    "groups": "",
+                    "action": "salto",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "06e9c5e2-b46c-4664-bf7f-46318fec4442",
-                    "path": "<Gamepad>/leftStick",
+                    "id": "bd3cbe71-9e7a-4eb1-8bab-6a4e3838676e",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Switch",
-                    "action": "Move",
+                    "groups": "",
+                    "action": "salto",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38153ec0-5397-4462-aa40-fb9391d08804",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "correr",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47fb1d82-d659-41bc-8fee-50c05a62d02c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "correr",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "Keyboard",
-            "bindingGroup": "Keyboard",
-            "devices": []
-        },
-        {
-            "name": "PS5",
-            "bindingGroup": "PS5",
-            "devices": []
-        },
-        {
-            "name": "Switch",
-            "bindingGroup": "Switch",
-            "devices": []
-        }
-    ]
+    "controlSchemes": []
 }
