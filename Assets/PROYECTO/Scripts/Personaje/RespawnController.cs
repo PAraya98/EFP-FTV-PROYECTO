@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.InputSystem;
 public class RespawnController : MonoBehaviour
 {
 
@@ -38,15 +39,22 @@ public class RespawnController : MonoBehaviour
 
     [BoxGroup("Dependencias")]
     [ReadOnly] [SerializeField] private GameObject player4;
-    private Vector3 player4Position;
-    private Color player4Color;
+    [ReadOnly] [SerializeField] private Vector3 player4Position;
+    [ReadOnly] [SerializeField] private Color player4Color;
+    [ReadOnly] [SerializeField] private PlayerInputManager jugadorControl;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        jugadorControl = gameObject.GetComponent<PlayerInputManager>();
+
+        
         player1 = GameObject.Find("Player 1");
         if (player1)
-        {   tienePlayer1 = true;
+        {
+            player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme("KeyboardMouse", Keyboard.current);
+            tienePlayer1 = true;            
             player1Position = player1.GetComponent<Transform>().position;
             player1Color = player1.GetComponent<SpriteRenderer>().color;
         }
@@ -54,6 +62,7 @@ public class RespawnController : MonoBehaviour
         player2 = GameObject.Find("Player 2");
         if (player2)
         {
+            player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Gamepad", Gamepad.all[0]);
             tienePlayer2 = true;
             player2Position = player2.GetComponent<Transform>().position;
             player2Color = player2.GetComponent<SpriteRenderer>().color;
@@ -74,6 +83,7 @@ public class RespawnController : MonoBehaviour
             player4Position = player4.GetComponent<Transform>().position;
             player4Color = player4.GetComponent<SpriteRenderer>().color;
         }
+
     }
 
     // Update is called once per frame

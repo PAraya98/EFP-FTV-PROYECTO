@@ -409,6 +409,9 @@ MonoBehaviour:
   estaMirandoDerecha: 1
   estaEnPiso: 0
   corriendo: 0
+  mover: 0
+  salto: 0
+  correr: 0
   rb: {fileID: 0}
   playerCollider: {fileID: 0}
   checkPiso: {fileID: 0}
@@ -519,8 +522,12 @@ MonoBehaviour:
     m_ActionName: gameplay/move[/SwitchProControllerHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c60e0974-d140-4597-a40e-9862193067e9
-    m_ActionName: gameplay/look[/SwitchProControllerHID/rightStick,/Mouse/delta]
+    m_ActionId: 3e9d60de-7960-4ee9-ae97-c21bab982367
+    m_ActionName: gameplay/salto[/SwitchProControllerHID/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 66bd17de-2543-4341-b8aa-376b25d47ef0
+    m_ActionName: gameplay/correr[/Keyboard/leftShift,/SwitchProControllerHID/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: gameplay
