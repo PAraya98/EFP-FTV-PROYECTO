@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.InputSystem;
+
 public class MovimientoController : MonoBehaviour
 {
     // Inspector
@@ -50,9 +52,12 @@ public class MovimientoController : MonoBehaviour
     [ReadOnly] [SerializeField] private int layerPiso;
     [BoxGroup("Dependencias")]
     [ReadOnly] [SerializeField] private Collider2D pies;
+    [BoxGroup("Dependencias")]
+    [ReadOnly] [SerializeField] private PlayerInput playerInput;
 
     void Start()
     {
+        playerInput = gameObject.GetComponent<PlayerInput>();
         Application.targetFrameRate = 60;
         layerPiso = LayerMask.NameToLayer("Piso");
         checkPiso = GameObject.Find("Tilemap - Escenario").GetComponent<CompositeCollider2D>();
@@ -61,8 +66,7 @@ public class MovimientoController : MonoBehaviour
         rb.mass = masa;
         playerCollider = gameObject.GetComponent<Collider2D>();
         estaEnPiso = false;
-
-
+        
     }
 
     // Update is called once per frame
@@ -73,7 +77,10 @@ public class MovimientoController : MonoBehaviour
         velocidadVertical = rb.velocity.y;
         rb.mass = masa;
 #endif
+        
+        Debug.Log(playerInput.actions["Move"].ReadValue<Vector2>());
         mirandoHacia = Input.GetAxisRaw("Horizontal");
+        /*
         if (Input.GetButtonDown("Jump") && estaEnPiso)
         {
             rb.velocity = new Vector2(rb.velocity.x, fuerzaDeSalto);
@@ -90,6 +97,7 @@ public class MovimientoController : MonoBehaviour
         {
             corriendo = false;
         }
+        */
         GirarPersonaje();        
     }
 
@@ -140,4 +148,10 @@ public class MovimientoController : MonoBehaviour
             transform.localScale = nuevaEscalaLocal;
         }
     }
+
+    public void MoviendoPersonaje(InputAction.CallbackContext ctx)
+    {   Vector2 vector_mov = ctx.ReadValue<Vector2>();
+        Debug.Log(vector_mov.x+ "||||| " + vector_mov.y);
+    }
+
 }

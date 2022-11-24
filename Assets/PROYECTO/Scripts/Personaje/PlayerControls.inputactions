@@ -6,18 +6,18 @@
             "id": "6e8b0383-dc61-4a1d-a25e-bd513ee85145",
             "actions": [
                 {
-                    "name": "ASWD",
-                    "type": "Button",
+                    "name": "Move",
+                    "type": "Value",
                     "id": "ff930c90-52e6-4b61-b2ce-b1560c42fdb0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "New action",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "2ea2735d-8979-4abf-8374-2cc7c72b4109",
+                    "id": "f7078600-17cd-4fa4-8832-d221cb1835fe",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -27,28 +27,132 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "767a24f5-a796-4dcb-88a9-cf9a25ae830d",
-                    "path": "",
+                    "id": "5add8a5f-a324-4e8f-852f-d9e67289cf53",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "ASWD",
+                    "groups": "Switch",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "5c032b5d-1c36-45df-90b0-ea0058be0619",
-                    "path": "",
+                    "id": "70039278-769e-42d1-9f73-c07cacac2e49",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a592a8ad-5ede-48ea-bef1-d3beaa823717",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "WASD",
+                    "id": "f68f0573-2f8d-472e-a07b-22e1918d83e0",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "1a760632-8042-4705-bb2c-77461c4b1608",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "415b1fdc-304e-42c5-a0fc-295c14e984ee",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "27015efd-f896-4999-920d-94cc8408d34e",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "3e8ad0c3-2676-44c9-bbb0-d922bd94aaff",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a98a78a2-400e-482c-81c0-743aac14ee30",
+                    "path": "<DualSenseGamepadHID>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06e9c5e2-b46c-4664-bf7f-46318fec4442",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Switch",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": []
+        },
+        {
+            "name": "PS5",
+            "bindingGroup": "PS5",
+            "devices": []
+        },
+        {
+            "name": "Switch",
+            "bindingGroup": "Switch",
+            "devices": []
+        }
+    ]
 }

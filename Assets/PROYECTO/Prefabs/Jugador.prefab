@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 8003803409600286191}
   - component: {fileID: 8003803409600286196}
   - component: {fileID: 7399164982163369225}
+  - component: {fileID: 8716745269753855841}
   m_Layer: 6
   m_Name: Jugador
   m_TagString: Untagged
@@ -428,10 +429,14 @@ MonoBehaviour:
   velocidadCaminando: 3
   velocidadCorriendo: 4
   estaEnPiso: 0
+  estaMuerto: 0
+  tiempoDeMuerte: 0
+  deltaTimeMuerte: 0
   animator: {fileID: 0}
   rb: {fileID: 0}
   layerPiso: 0
   pies: {fileID: 0}
+  personaje: {fileID: 0}
 --- !u!95 &8003803409600286196
 Animator:
   serializedVersion: 4
@@ -478,3 +483,53 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5628071, y: 0.90164566}
   m_EdgeRadius: 0
+--- !u!114 &8716745269753855841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003803409600286202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 80b3094716ef7c649a142f6b63892615, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2237507920920833906}
+        m_TargetAssemblyTypeName: MovimientoController, Assembly-CSharp
+        m_MethodName: MoviendoPersonaje
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ff930c90-52e6-4b61-b2ce-b1560c42fdb0
+    m_ActionName: Player/Move[/DualSenseGamepadHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f7078600-17cd-4fa4-8832-d221cb1835fe
+    m_ActionName: Player/Jump[/DualSenseGamepadHID/buttonSouth,/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
