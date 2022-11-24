@@ -8,6 +8,8 @@ public class RespawnController : MonoBehaviour
 
     [BoxGroup("Valores requeridos")]
     public GameObject playerPrefab;
+    [BoxGroup("Valores requeridos")]
+    public GameObject playerInputPrefab;
     //Variables del juego en movimiento
     [BoxGroup("Variables en tiempo real")]
     [ReadOnly]
@@ -22,105 +24,83 @@ public class RespawnController : MonoBehaviour
     [ReadOnly]
     public bool tienePlayer4 = false;
 
-    [BoxGroup("Dependencias")]
-    [ReadOnly] [SerializeField] private GameObject player1;
-    private Vector3 player1Position;
-    private Color player1Color;
+    [BoxGroup("Dependencias")] [ReadOnly]
+    public GameObject player1;
+    [BoxGroup("Dependencias")] [ReadOnly]
+    public GameObject player2;
+    [BoxGroup("Dependencias")] [ReadOnly]
+    public GameObject player3;  
+    [BoxGroup("Dependencias")] [ReadOnly]
+    public GameObject player4;
 
-    [BoxGroup("Dependencias")]
-    [ReadOnly] [SerializeField] private GameObject player2;
-    private Vector3 player2Position;
-    private Color player2Color;
-
-    [BoxGroup("Dependencias")]
-    [ReadOnly] [SerializeField] private GameObject player3;
-    private Vector3 player3Position;
-    private Color player3Color;
-
-    [BoxGroup("Dependencias")]
-    [ReadOnly] [SerializeField] private GameObject player4;
-    [ReadOnly] [SerializeField] private Vector3 player4Position;
-    [ReadOnly] [SerializeField] private Color player4Color;
     [ReadOnly] [SerializeField] private PlayerInputManager jugadorControl;
 
+    private List<GameObject> listaPlayer;
+    private Vector3[] listaPlayerPosicion;
+    private Color[] listaPlayerColor;
+    private Gamepad[] listaPlayerMando;
+
     // Start is called before the first frame update
+
+    void agregarInput(GameObject player, string constrolScheme, InputDevice[] pairWithDevices)
+    {
+        var instance = PlayerInput.Instantiate(playerInputPrefab, controlScheme: constrolScheme, pairWithDevices: pairWithDevices);
+        instance.transform.SetParent(player.transform);
+        instance.transform.position = player.transform.position;
+        instance.name = "PlayerInput";
+    }
+
+    struct instanciaJugador 
+    {
+        GameObject  player;
+        Color       color;
+        Transform   posision;
+        int         hashMando;
+    }
+
     void Start()
     {
 
         jugadorControl = gameObject.GetComponent<PlayerInputManager>();
 
+        listaPlayer = new List<GameObject> { player1, player2, player3, player4 };
+        listaPlayerPosicion = new Vector3[] { player1.transform.position, player2.transform.position, player3.transform.position, player4.transform.position };
+        listaPlayerColor = new Color[] { player1.GetComponent<SpriteRenderer>().color, player2.GetComponent<SpriteRenderer>().color, player3.GetComponent<SpriteRenderer>().color, player4.GetComponent<SpriteRenderer>().color };
+        listaPlayerMando = new Gamepad[] {new Gamepad(), new Gamepad(), new Gamepad(), new Gamepad() };
+        int i = 0;
+
+        foreach (Gamepad mando in Gamepad.all) {
+            if (i < 4)
+            {
+                listaPlayer[i].SetActive(true);
+                listaPlayerMando[i] = Gamepad.all[i];
+                agregarInput(listaPlayer[i], "Gamepad", new InputDevice[] { Gamepad.all[i] }); 
+            }
+            i++;
+        }
         
-        player1 = GameObject.Find("Player 1");
-        if (player1)
-        {
-            player1.GetComponent<PlayerInput>().SwitchCurrentControlScheme("KeyboardMouse", Keyboard.current);
-            tienePlayer1 = true;            
-            player1Position = player1.GetComponent<Transform>().position;
-            player1Color = player1.GetComponent<SpriteRenderer>().color;
-        }
-
-        player2 = GameObject.Find("Player 2");
-        if (player2)
-        {
-            player2.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Gamepad", Gamepad.all[0]);
-            tienePlayer2 = true;
-            player2Position = player2.GetComponent<Transform>().position;
-            player2Color = player2.GetComponent<SpriteRenderer>().color;
-        }
-
-        player3 = GameObject.Find("Player 3");
-        if (player3)
-        {
-            tienePlayer3 = true;
-            player3Position = player3.GetComponent<Transform>().position;
-            player3Color = player3.GetComponent<SpriteRenderer>().color;
-        }
-
-        player4 = GameObject.Find("Player 4");
-        if (player4)
-        {
-            tienePlayer4 = true;
-            player4Position = player4.GetComponent<Transform>().position;
-            player4Color = player4.GetComponent<SpriteRenderer>().color;
-        }
-
     }
 
     // Update is called once per frame
     void FixedUpdate()
-    {   
-        //TODO: CREAR EL JUGADOR -> HACERLO HIJO DE JUGADORES -> DEFINIR PARÁMETROS INICIALES
-        if(tienePlayer1 && !player1)
-        {
-            player1 = Instantiate(playerPrefab);
-            player1.transform.SetParent(gameObject.transform);
-            player1.transform.position = player1Position;
-            player1.GetComponent<SpriteRenderer>().color = player1Color;
-            player1.name = "Player 1";
-        }
-        if (tienePlayer2 && !player2)
-        {
-            player2 = Instantiate(playerPrefab);
-            player2.transform.SetParent(gameObject.transform);
-            player2.transform.position = player2Position;
-            player2.GetComponent<SpriteRenderer>().color = player2Color;
-            player2.name = "Player 2";
-        }
-        if (tienePlayer3 && !player3)
-        {
-            player3 = Instantiate(playerPrefab);
-            player3.transform.SetParent(gameObject.transform);
-            player3.transform.position = player3Position;
-            player3.GetComponent<SpriteRenderer>().color = player3Color;
-            player3.name = "Player 3";
-        }
-        if (tienePlayer4 && !player4)
-        {
-            player4 = Instantiate(playerPrefab);
-            player4.transform.SetParent(gameObject.transform);
-            player4.transform.position = player4Position;
-            player4.GetComponent<SpriteRenderer>().color = player4Color;
-            player4.name = "Player 4";
+    {
+        //TODO: CREAR EL JUGADOR -> HACERLO HIJO DE JUGADDORAES -> DEFINIR PARÁMETROS INICIALES
+        int i = 0;
+        foreach (GameObject player in listaPlayer)
+        { 
+            if(!player)
+            {
+                listaPlayer.RemoveAt(i);// ARREGLAR NO FUNCIONA LA ASIGNACIÓN DENTRO DEL ARRAY
+                GameObject aux = Instantiate(playerPrefab);
+                aux.transform.SetParent(gameObject.transform);
+                aux.transform.position = listaPlayerPosicion[i];
+                aux.GetComponent<SpriteRenderer>().color = listaPlayerColor[i];
+                aux.name = "Player " + (i + 1);
+                agregarInput(aux, "Gamepad", new InputDevice[] { listaPlayerMando[i]});
+                listaPlayer.Insert(i, aux);
+            }
         }
     }
-}
+
+    
+}   

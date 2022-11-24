@@ -58,7 +58,6 @@ public class MovimientoController : MonoBehaviour
 
     void Start()
     {
-        playerInput = gameObject.GetComponent<PlayerInput>();
         Application.targetFrameRate = 60;
         layerPiso = LayerMask.NameToLayer("Piso");
         checkPiso = GameObject.Find("Tilemap - Escenario").GetComponent<CompositeCollider2D>();
@@ -78,26 +77,35 @@ public class MovimientoController : MonoBehaviour
         velocidadVertical = rb.velocity.y;
         rb.mass = masa;
 #endif
-        mover = playerInput.actions["mover"].ReadValue<Vector2>().x;
-        mirandoHacia = mover == 0 ? 0 : mover > 0 ? 1 : -1;
-        salto = playerInput.actions["salto"].IsPressed();
-        correr = playerInput.actions["correr"].IsPressed();
-        if (salto && estaEnPiso)
+        if (playerInput)
         {
-            rb.velocity = new Vector2(rb.velocity.x, fuerzaDeSalto);
+            mover = playerInput.actions["mover"].ReadValue<Vector2>().x;
+            mirandoHacia = mover == 0 ? 0 : mover > 0 ? 1 : -1;
+            salto = playerInput.actions["salto"].IsPressed();
+            correr = playerInput.actions["correr"].IsPressed();
+
+            if (salto && estaEnPiso)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, fuerzaDeSalto);
+            }
+            if (!salto && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
+            if (correr)
+            {
+                corriendo = true;
+            }
+            if (!correr)
+            {
+                corriendo = false;
+            }
         }
-        if (!salto && rb.velocity.y > 0f)
+        else
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            if(gameObject.transform.Find("PlayerInput")) playerInput = gameObject.transform.Find("PlayerInput").GetComponent<PlayerInput>();
         }
-        if (correr)
-        {
-            corriendo = true;
-        }
-        if (!correr)
-        {
-            corriendo = false;
-        }
+        
 
         GirarPersonaje();        
     }

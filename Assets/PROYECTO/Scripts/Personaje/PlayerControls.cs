@@ -166,6 +166,17 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""556f6d0b-fbe3-4d48-a3ad-189538d2f71c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""salto"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""38153ec0-5397-4462-aa40-fb9391d08804"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
@@ -179,6 +190,17 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""47fb1d82-d659-41bc-8fee-50c05a62d02c"",
                     ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""correr"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83e55058-2cc6-4f4d-b285-ca420f85b064"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
