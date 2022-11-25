@@ -8,15 +8,15 @@ public class MovimientoController : MonoBehaviour
 {
     // Inspector
     //Inputs del inspector
-    [BoxGroup("Constantes del personaje")]    
+    [BoxGroup("Constantes del personaje")]
     public float velocidadCaminando = 3f;
-    [BoxGroup("Constantes del personaje")]    
+    [BoxGroup("Constantes del personaje")]
     public float velocidadCorriendo = 4f;
-    [BoxGroup("Constantes del personaje")]    
+    [BoxGroup("Constantes del personaje")]
     public float fuerzaDeSalto = 16f;
 
     [BoxGroup("Constantes del personaje")]
-    public float fuerzaDeMA= 0.1f;
+    public float fuerzaDeMA = 0.1f;
 
     [BoxGroup("Constantes del personaje")]
     [ReadOnly]
@@ -58,6 +58,7 @@ public class MovimientoController : MonoBehaviour
 
     void Start()
     {
+        
         Application.targetFrameRate = 60;
         layerPiso = LayerMask.NameToLayer("Piso");
         checkPiso = GameObject.Find("Tilemap - Escenario").GetComponent<CompositeCollider2D>();
@@ -66,7 +67,7 @@ public class MovimientoController : MonoBehaviour
         rb.mass = masa;
         playerCollider = gameObject.GetComponent<Collider2D>();
         estaEnPiso = false;
-        
+
     }
 
     // Update is called once per frame
@@ -103,16 +104,16 @@ public class MovimientoController : MonoBehaviour
         }
         else
         {
-            if(gameObject.transform.Find("PlayerInput")) playerInput = gameObject.transform.Find("PlayerInput").GetComponent<PlayerInput>();
+            if (gameObject.transform.Find("PlayerInput")) playerInput = gameObject.transform.Find("PlayerInput").GetComponent<PlayerInput>();
         }
-        
 
-        GirarPersonaje();        
+
+        GirarPersonaje();
     }
 
     private void FixedUpdate()
     {   // Se asigna la velocidad de movimiento
-        if(corriendo && estaEnPiso) // Si esta corriendo en el piso
+        if (corriendo && estaEnPiso) // Si esta corriendo en el piso
         {
             rb.velocity = new Vector2(mirandoHacia * velocidadCorriendo, rb.velocity.y);
         }
@@ -135,10 +136,10 @@ public class MovimientoController : MonoBehaviour
         //if (pies.IsTouchingLayers(layerPiso)) -> no funciona
         // https://answers.unity.com/questions/1321643/istouchinglayers-is-not-working.html
         //{
-        Debug.Log(LayerMask.GetMask(new string[] { "Piso" }));
+
         if (pies.IsTouchingLayers(LayerMask.GetMask(new string[] { "Piso" })))
-        { 
-            estaEnPiso = true; 
+        {
+            estaEnPiso = true;
         }
         else
         {
@@ -146,8 +147,7 @@ public class MovimientoController : MonoBehaviour
         }
     }
 
-
-    void GirarPersonaje()
+    void GirarPersonaje()   
     {
         if (estaMirandoDerecha && mirandoHacia < 0f || !estaMirandoDerecha && mirandoHacia > 0f)
         {
@@ -156,11 +156,6 @@ public class MovimientoController : MonoBehaviour
             nuevaEscalaLocal.x *= -1f;
             transform.localScale = nuevaEscalaLocal;
         }
-    }
-
-    public void MoviendoPersonaje(InputAction.CallbackContext ctx)
-    {   Vector2 vector_mov = ctx.ReadValue<Vector2>();
-        Debug.Log(vector_mov.x+ "||||| " + vector_mov.y);
     }
 
 }

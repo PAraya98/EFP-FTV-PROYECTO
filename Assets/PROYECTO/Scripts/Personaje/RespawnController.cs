@@ -51,7 +51,6 @@ public class RespawnController : MonoBehaviour
 
         foreach (GameObject player in listaPlayer)
         {
-            Debug.Log(Gamepad.all.Count);
             if(Gamepad.all.Count > i)
             {
                 player.SetActive(true);
