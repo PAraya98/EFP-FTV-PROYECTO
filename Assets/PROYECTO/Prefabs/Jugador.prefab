@@ -176,7 +176,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02589655, y: -0.48689067}
+  m_Offset: {x: -0.02589655, y: -0.47462618}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -187,7 +187,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.03378129}
+  m_Size: {x: 0.45, y: 0.00925231}
   m_EdgeRadius: 0
 --- !u!114 &8829161175894721748
 MonoBehaviour:
@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personajeRb: {fileID: 0}
+  personaje: {fileID: 0}
   padreRb: {fileID: 0}
   jugadores: {fileID: 0}
   pies: {fileID: 0}
@@ -452,11 +453,14 @@ MonoBehaviour:
   estaMuerto: 0
   tiempoDeMuerte: 0
   deltaTimeMuerte: 0
+  velocidadXReal: 0
   animator: {fileID: 0}
   rb: {fileID: 0}
   layerPiso: 0
   pies: {fileID: 0}
   personaje: {fileID: 0}
+  padreTransform: {fileID: 0}
+  padreRb: {fileID: 0}
 --- !u!95 &8003803409600286196
 Animator:
   serializedVersion: 4
@@ -501,5 +505,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5628071, y: 0.90164566}
+  m_Size: {x: 0.6, y: 0.90164566}
   m_EdgeRadius: 0

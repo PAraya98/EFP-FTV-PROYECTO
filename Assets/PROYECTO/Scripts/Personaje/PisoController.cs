@@ -7,6 +7,8 @@ public class PisoController : MonoBehaviour
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private Rigidbody2D personajeRb;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    private Transform personaje;
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private Rigidbody2D padreRb;
     [BoxGroup("Dependencias")]
     [ReadOnly] [SerializeField] private Transform jugadores;
@@ -14,6 +16,7 @@ public class PisoController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        personaje = gameObject.transform.parent;
         personajeRb = gameObject.transform.parent.GetComponent<Rigidbody2D>();
         jugadores = gameObject.transform.parent.transform.parent;
         pies = gameObject.GetComponent<Collider2D>();
@@ -29,7 +32,7 @@ public class PisoController : MonoBehaviour
 
         }
     }
-
+    /*
     private void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject.layer);
@@ -39,10 +42,21 @@ public class PisoController : MonoBehaviour
 
         }
     }
+    */
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Piso"))
+        {
+            personaje.parent = collision.transform;
+            padreRb = padreRb = collision.gameObject.GetComponent<Rigidbody2D>(); ;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Piso"))
         {
+            personaje.parent = jugadores;
             padreRb = null;
         }
     }

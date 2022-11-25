@@ -153,8 +153,15 @@ public class MovimientoController : MonoBehaviour
         {
             estaMirandoDerecha = !estaMirandoDerecha;
             Vector3 nuevaEscalaLocal = transform.localScale;
-            nuevaEscalaLocal.x *= -1f;
+            nuevaEscalaLocal.x *= -1f;            
             transform.localScale = nuevaEscalaLocal;
+            foreach (Transform child in transform)
+            {
+                nuevaEscalaLocal = child.localScale;
+                nuevaEscalaLocal.x *= -1f;
+                child.localScale = nuevaEscalaLocal;
+                child.localPosition = new Vector3(-child.localPosition.x, child.localPosition.y, child.localPosition.z);
+            }
         }
     }
 

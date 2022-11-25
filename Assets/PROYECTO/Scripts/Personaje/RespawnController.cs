@@ -67,7 +67,7 @@ public class RespawnController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //TODO: CREAR EL JUGADOR -> HACERLO HIJO DE JUGADDORAES -> DEFINIR PARÁMETROS INICIALES
 
@@ -80,6 +80,7 @@ public class RespawnController : MonoBehaviour
                 aux.transform.SetParent(gameObject.transform);
                 aux.transform.position = listaPlayerPosicion[i];
                 aux.GetComponent<SpriteRenderer>().color = listaPlayerColor[i];
+                aux.transform.Find("muerte").GetComponent<SpriteRenderer>().color = listaPlayerColor[i];
                 aux.name = "Player " + (i + 1);
                 agregarInput(aux, "Gamepad", new InputDevice[] { listaPlayerMando[i] });
                 listaPlayer.Insert(i, aux);
