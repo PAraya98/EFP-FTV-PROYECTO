@@ -43,26 +43,25 @@ public class MovimientoController : MonoBehaviour
     [BoxGroup("Controles del personaje")] [ReadOnly]
     public bool correr;
     //Variables privadas obtenidas desde otros gameObject
-    [BoxGroup("Dependencias")]
-    [ReadOnly] [SerializeField] private Rigidbody2D rb;
-    [BoxGroup("Dependencias")]
-    [ReadOnly] [SerializeField] private Collider2D playerCollider;
-    [BoxGroup("Dependencias")]
-    [ReadOnly] [SerializeField] private CompositeCollider2D checkPiso;
-    [BoxGroup("Dependencias")]
-    [ReadOnly] [SerializeField] private int layerPiso;
-    [BoxGroup("Dependencias")]
-    [ReadOnly] [SerializeField] private Collider2D pies;
-    [BoxGroup("Dependencias")]
-    [ReadOnly] [SerializeField] private PlayerInput playerInput;
-
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    private Rigidbody2D rb;
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    private Collider2D playerCollider;
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    private CompositeCollider2D checkPiso;
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    private int layerPiso;
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    private PlayerInput playerInput;
+   [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    private PisoController pisoController;
     void Start()
     {
         
         Application.targetFrameRate = 60;
         layerPiso = LayerMask.NameToLayer("Piso");
         checkPiso = GameObject.Find("Tilemap - Escenario").GetComponent<CompositeCollider2D>();
-        pies = gameObject.transform.Find("pies").GetComponent<Collider2D>();
+        pisoController = gameObject.transform.Find("pies").GetComponent<PisoController>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.mass = masa;
         playerCollider = gameObject.GetComponent<Collider2D>();
@@ -77,6 +76,7 @@ public class MovimientoController : MonoBehaviour
         velocidadHorizontal = rb.velocity.x;
         velocidadVertical = rb.velocity.y;
         rb.mass = masa;
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 #endif
         if (playerInput)
         {
@@ -106,9 +106,13 @@ public class MovimientoController : MonoBehaviour
         {
             if (gameObject.transform.Find("PlayerInput")) playerInput = gameObject.transform.Find("PlayerInput").GetComponent<PlayerInput>();
         }
-
-
         GirarPersonaje();
+    }
+
+    public bool EstaSaltando()
+    {
+        if (playerInput) return playerInput.actions["salto"].IsPressed();
+        else return false;
     }
 
     private void FixedUpdate()
@@ -133,18 +137,9 @@ public class MovimientoController : MonoBehaviour
         {
             Debug.Log("ENTRE AL ELSE UnU");
         }
-        //if (pies.IsTouchingLayers(layerPiso)) -> no funciona
-        // https://answers.unity.com/questions/1321643/istouchinglayers-is-not-working.html
-        //{
+        
 
-        if (pies.IsTouchingLayers(LayerMask.GetMask(new string[] { "Piso" })))
-        {
-            estaEnPiso = true;
-        }
-        else
-        {
-            estaEnPiso = false;
-        }
+        estaEnPiso = pisoController.GetEstaEnPiso();
     }
 
     void GirarPersonaje()   
@@ -155,12 +150,14 @@ public class MovimientoController : MonoBehaviour
             Vector3 nuevaEscalaLocal = transform.localScale;
             nuevaEscalaLocal.x *= -1f;            
             transform.localScale = nuevaEscalaLocal;
+            
             foreach (Transform child in transform)
             {
                 nuevaEscalaLocal = child.localScale;
                 nuevaEscalaLocal.x *= -1f;
                 child.localScale = nuevaEscalaLocal;
-                child.localPosition = new Vector3(-child.localPosition.x, child.localPosition.y, child.localPosition.z);
+                child.localPosition = new Vector3(-child.localPosition.x, child.localPosition.y, 0);
+                child.position = new Vector3(child.position.x, child.position.y, 0);
             }
         }
     }

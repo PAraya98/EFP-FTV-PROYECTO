@@ -8,6 +8,13 @@ public class InfoPlayerUIController : MonoBehaviour
     [BoxGroup("Valores requeridos")]
     public GameObject player;
 
+    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
+    private bool estaMuerto = false;
+    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
+    private int contadorMuertes = 0;
+    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
+    private int contadorVictorias = 0;
+
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private string playerName;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
@@ -16,19 +23,17 @@ public class InfoPlayerUIController : MonoBehaviour
     private TextMeshProUGUI textVictorias;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private Collider2D playerCollider;
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    private CollisionController collisionController;
 
-    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
-    private bool estaMuerto = false;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
-    private int contadorMuertes = 0;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
-    private int contadorVictorias = 0;
+    
 
 
     void Start()
     {
         if(player)
         {
+            collisionController = player.GetComponent<CollisionController>();
             playerName = player.name;
             playerCollider = player.GetComponent<Collider2D>();
             textMuertes = gameObject.transform.Find("Panel - Info Muertes")
@@ -55,7 +60,7 @@ public class InfoPlayerUIController : MonoBehaviour
                 estaMuerto = false;
             }            
         }
-        if (!estaMuerto && player && playerCollider.IsTouchingLayers(LayerMask.GetMask(new string[] { "Muerte" })))
+        if (!estaMuerto && player && collisionController.getEstaMuerto())
         {
             contadorMuertes++;
             textMuertes.text = "x" + contadorMuertes;

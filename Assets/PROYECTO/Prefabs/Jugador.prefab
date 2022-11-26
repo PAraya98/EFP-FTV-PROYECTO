@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2751252231889104851
 Transform:
   m_ObjectHideFlags: 0
@@ -41,7 +41,7 @@ BoxCollider:
   m_GameObject: {fileID: 5787061829998764496}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.5628071, y: 0.017398357, z: 1}
   m_Center: {x: -0.03216982, y: 0.43559575, z: 0}
@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d9e03860d300b1489586991b6ef4060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  estaEnPiso: 0
   personajeRb: {fileID: 0}
   personaje: {fileID: 0}
   padreRb: {fileID: 0}
@@ -303,6 +304,7 @@ GameObject:
   - component: {fileID: 8003803409600286200}
   - component: {fileID: 2237507920920833906}
   - component: {fileID: 8003803409600286191}
+  - component: {fileID: 5368324854088979201}
   - component: {fileID: 8003803409600286196}
   - component: {fileID: 7399164982163369225}
   m_Layer: 6
@@ -321,7 +323,7 @@ Transform:
   m_GameObject: {fileID: 8003803409600286202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -7.897, y: -3.352, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3348510954506311542}
@@ -398,7 +400,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
+  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -415,9 +417,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ff4ec1d54378044b9a96588a86e72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadCaminando: 1.35
-  velocidadCorriendo: 2.5
-  fuerzaDeSalto: 6.4
+  velocidadCaminando: 2.025
+  velocidadCorriendo: 3.75
+  fuerzaDeSalto: 9.6
   fuerzaDeMA: 0.8
   masa: 1
   velocidadHorizontal: 0
@@ -433,8 +435,8 @@ MonoBehaviour:
   playerCollider: {fileID: 0}
   checkPiso: {fileID: 0}
   layerPiso: 0
-  pies: {fileID: 0}
   playerInput: {fileID: 0}
+  pisoController: {fileID: 0}
 --- !u!114 &8003803409600286191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +463,19 @@ MonoBehaviour:
   personaje: {fileID: 0}
   padreTransform: {fileID: 0}
   padreRb: {fileID: 0}
+  pisoController: {fileID: 0}
+--- !u!114 &5368324854088979201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003803409600286202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2f29794ca6c57409229751c9f6dd92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &8003803409600286196
 Animator:
   serializedVersion: 4

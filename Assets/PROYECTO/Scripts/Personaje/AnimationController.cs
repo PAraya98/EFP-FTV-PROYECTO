@@ -36,40 +36,38 @@ public class AnimationController : MonoBehaviour
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
     private Collider2D pies;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
-    private Collider2D personaje;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
     private Transform padreTransform;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
     private Rigidbody2D padreRb;
-
-
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    private PisoController pisoController;
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    private CollisionController collisionController;
     void Start()
     {
         padreTransform = gameObject.transform.parent;
         padreRb = padreTransform.GetComponent<Rigidbody2D>();
-
         tiempoDeMuerte = new TimeSpan(DateTime.Now.Ticks).TotalSeconds;
         layerPiso = LayerMask.NameToLayer("Piso");
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
-        pies = gameObject.transform.Find("pies").GetComponent<Collider2D>();
-        personaje = gameObject.GetComponent<Collider2D>();
+        pisoController = gameObject.transform.Find("pies").GetComponent<PisoController>();
+        collisionController = gameObject.GetComponent<CollisionController>();
     }
 
     void Update()
     {   
-        if (personaje.IsTouchingLayers(LayerMask.GetMask(new string[] { "Muerte" })) && !estaMuerto)
+        if (collisionController.getEstaMuerto() && !estaMuerto)
         {
+            transform.gameObject.layer = LayerMask.NameToLayer("Default");
             estaMuerto = true;
             animator.Play("muerte");
             tiempoDeMuerte = new TimeSpan(DateTime.Now.Ticks).TotalSeconds;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            
         }
 
-        if (pies.IsTouchingLayers(LayerMask.GetMask(new string[] { "Piso" })))
-        {   estaEnPiso = true;         
-        }
-        else estaEnPiso = false;
+        estaEnPiso = pisoController.GetEstaEnPiso();
 
         //FIXME: Ineficiente tal vez, sería mejor obtenerlo con un método
         padreTransform = gameObject.transform.parent;
