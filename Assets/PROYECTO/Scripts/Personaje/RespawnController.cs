@@ -9,14 +9,18 @@ public class RespawnController : MonoBehaviour
     [BoxGroup("Valores requeridos")]
     public GameObject playerPrefab;
     [BoxGroup("Valores requeridos")]
-    public GameObject playerInputPrefab; 
+    public GameObject playerInputPrefab;
+    [BoxGroup("Valores requeridos")]
+    public bool contarEntradaTeclado = false;
 
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    [BoxGroup("Dependencias")]
+    [ReadOnly]
+    [SerializeField]
     private List<GameObject> listaPlayer;
 
     private Vector3[] listaPlayerPosicion;
     private Color[] listaPlayerColor;
-    private Gamepad[] listaPlayerMando;
+    private InputDevice[] listaPlayerMando;
 
     // Start is called before the first frame update
 
@@ -28,12 +32,12 @@ public class RespawnController : MonoBehaviour
         instance.name = "PlayerInput";
     }
 
-    struct instanciaJugador 
+    struct instanciaJugador
     {
-        GameObject  player;
-        Color       color;
-        Transform   posision;
-        int         hashMando;
+        GameObject player;
+        Color color;
+        Transform posision;
+        int hashMando;
     }
 
     void Start()
@@ -46,24 +50,32 @@ public class RespawnController : MonoBehaviour
         listaPlayer = new List<GameObject> { player1, player2, player3, player4 };
         listaPlayerPosicion = new Vector3[] { player1.transform.position, player2.transform.position, player3.transform.position, player4.transform.position };
         listaPlayerColor = new Color[] { player1.GetComponent<SpriteRenderer>().color, player2.GetComponent<SpriteRenderer>().color, player3.GetComponent<SpriteRenderer>().color, player4.GetComponent<SpriteRenderer>().color };
-        listaPlayerMando = new Gamepad[] {new Gamepad(), new Gamepad(), new Gamepad(), new Gamepad() };
+        listaPlayerMando = new InputDevice[] { new Gamepad(), new Gamepad(), new Gamepad(), new Gamepad() };
         int i = 0;
 
         foreach (GameObject player in listaPlayer)
         {
-            if(Gamepad.all.Count > i)
+            if (Gamepad.all.Count > i)
             {
                 player.SetActive(true);
                 listaPlayerMando[i] = Gamepad.all[i];
                 agregarInput(listaPlayer[i], "Gamepad", new InputDevice[] { Gamepad.all[i] });
+
             }
             else
             {
                 player.SetActive(false);
-                GameObject.Find("Panel Info - Player "+ (i+1)).SetActive(false);
+                GameObject.Find("Panel Info - Player " + (i + 1)).SetActive(false);
             }
             i++;
-        }    
+        }
+
+        if (contarEntradaTeclado && Gamepad.all.Count < listaPlayer.Count)
+        {
+            listaPlayer[Gamepad.all.Count].SetActive(true);
+            listaPlayerMando[Gamepad.all.Count] = Keyboard.current;
+            agregarInput(listaPlayer[Gamepad.all.Count], "Keyboard", new InputDevice[] { Keyboard.current });
+        }
     }
 
     // Update is called once per frame
@@ -88,5 +100,5 @@ public class RespawnController : MonoBehaviour
         }
     }
 
-    
-}   
+
+}
