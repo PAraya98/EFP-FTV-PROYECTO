@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.InputSystem;
+using Cinemachine;
+using System;
+using static Unity.Burst.Intrinsics.X86;
+
 public class RespawnController : MonoBehaviour
 {
 
@@ -12,15 +16,22 @@ public class RespawnController : MonoBehaviour
     public GameObject playerInputPrefab;
     [BoxGroup("Valores requeridos")]
     public bool contarEntradaTeclado = false;
+    
+
 
     [BoxGroup("Dependencias")]
     [ReadOnly]
     [SerializeField]
     private List<GameObject> listaPlayer;
-
+    
     private Vector3[] listaPlayerPosicion;
     private Color[] listaPlayerColor;
     private InputDevice[] listaPlayerMando;
+    
+    [BoxGroup("Dependencias")]
+    [ReadOnly]
+    [SerializeField]
+    private CinemachineTargetGroup cinemachinetargetgroup;
 
     // Start is called before the first frame update
 
@@ -31,23 +42,28 @@ public class RespawnController : MonoBehaviour
         instance.transform.position = player.transform.position;
         instance.name = "PlayerInput";
     }
-
+    
     struct instanciaJugador
     {
         GameObject player;
         Color color;
         Transform posision;
         int hashMando;
+        
     }
 
     void Start()
     {
+        // INICIA EL JUEGO ASIGNAR CAMARA LOS PLAYER ACTUALES..
         GameObject player1 = GameObject.Find("Player 1");
         GameObject player2 = GameObject.Find("Player 2");
         GameObject player3 = GameObject.Find("Player 3");
         GameObject player4 = GameObject.Find("Player 4");
 
+        cinemachinetargetgroup = GameObject.Find("TargetGroup - CamaraSeguimiento").GetComponent<CinemachineTargetGroup>();
+
         listaPlayer = new List<GameObject> { player1, player2, player3, player4 };
+        
         listaPlayerPosicion = new Vector3[] { player1.transform.position, player2.transform.position, player3.transform.position, player4.transform.position };
         listaPlayerColor = new Color[] { player1.GetComponent<SpriteRenderer>().color, player2.GetComponent<SpriteRenderer>().color, player3.GetComponent<SpriteRenderer>().color, player4.GetComponent<SpriteRenderer>().color };
         listaPlayerMando = new InputDevice[] { new Gamepad(), new Gamepad(), new Gamepad(), new Gamepad() };
@@ -59,7 +75,6 @@ public class RespawnController : MonoBehaviour
             {
                 listaPlayerMando[i] = Gamepad.all[i];
                 agregarInput(listaPlayer[i], "Gamepad", new InputDevice[] { Gamepad.all[i] });
-
             }
             else if (contarEntradaTeclado && i == Gamepad.all.Count)
             { 
@@ -70,6 +85,8 @@ public class RespawnController : MonoBehaviour
             {
                 player.SetActive(false);
                 GameObject.Find("Panel Info - Player " + (i + 1)).SetActive(false);
+                cinemachinetargetgroup.RemoveMember(listaPlayer[i].transform);
+
             }
             i++;
         }
@@ -79,7 +96,6 @@ public class RespawnController : MonoBehaviour
     void Update()
     {
         //TODO: CREAR EL JUGADOR -> HACERLO HIJO DE JUGADDORAES -> DEFINIR PAR�METROS INICIALES
-
         for (int i = 0; i < listaPlayer.Count; i++)
         {
             if (!listaPlayer[i])
@@ -93,6 +109,9 @@ public class RespawnController : MonoBehaviour
                 aux.name = "Player " + (i + 1);
                 agregarInput(aux, "Gamepad", new InputDevice[] { listaPlayerMando[i] });
                 listaPlayer.Insert(i, aux);
+                cinemachinetargetgroup.AddMember(aux.transform, 1, 2);
+
+                // ASIGNAR LACA AMRA PRIORIDAD 1 Y RAIDO
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using System;
+using Cinemachine;
 
 public class AnimationController : MonoBehaviour
 {
@@ -15,34 +16,36 @@ public class AnimationController : MonoBehaviour
     public float velocidadCorriendo = 4f;
 
     //Variables del personaje en movimiento
-    [BoxGroup("Variables en tiempo real")] [ReadOnly]
+    [BoxGroup("Variables en tiempo real")][ReadOnly]
     public bool estaEnPiso;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly]
+    [BoxGroup("Variables en tiempo real")][ReadOnly]
     public bool estaMuerto;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly]
+    [BoxGroup("Variables en tiempo real")][ReadOnly]
     public double tiempoDeMuerte;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly]
+    [BoxGroup("Variables en tiempo real")][ReadOnly]
     public double deltaTimeMuerte;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly]
+    [BoxGroup("Variables en tiempo real")][ReadOnly]
     public float velocidadXReal;
 
     //Variables privadas obtenidas desde otros gameObject
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    [BoxGroup("Dependencias")][ReadOnly][SerializeField]
     private Animator animator;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    [BoxGroup("Dependencias")][ReadOnly][SerializeField]
     private Rigidbody2D rb;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    [BoxGroup("Dependencias")][ReadOnly][SerializeField]
     private int layerPiso;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    [BoxGroup("Dependencias")][ReadOnly][SerializeField]
     private Collider2D pies;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
     private Transform padreTransform;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    [BoxGroup("Dependencias")][ReadOnly][SerializeField]
     private Rigidbody2D padreRb;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private PisoController pisoController;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private CollisionController collisionController;
+    [BoxGroup("Dependencias")][ReadOnly][SerializeField]
+    private CinemachineTargetGroup cinemachinetargetgroup;
     void Start()
     {
         padreTransform = gameObject.transform.parent;
@@ -52,6 +55,7 @@ public class AnimationController : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         pisoController = gameObject.transform.Find("pies").GetComponent<PisoController>();
         collisionController = gameObject.GetComponent<CollisionController>();
+        cinemachinetargetgroup = GameObject.Find("TargetGroup - CamaraSeguimiento").GetComponent<CinemachineTargetGroup>();
     }
 
     void Update()
@@ -68,7 +72,7 @@ public class AnimationController : MonoBehaviour
 
         estaEnPiso = pisoController.GetEstaEnPiso();
 
-        //FIXME: Ineficiente tal vez, sería mejor obtenerlo con un método
+        //FIXME: Ineficiente tal vez, serï¿½a mejor obtenerlo con un mï¿½todo
         padreRb = pisoController.GetPadreRb();
 
         if (padreRb) velocidadXReal = Mathf.Abs(padreRb.velocity.x - rb.velocity.x);
@@ -91,8 +95,13 @@ public class AnimationController : MonoBehaviour
         }
         //Muerte del personaje
         else
-        {                
-            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeMuerte > 3.5f) Destroy(gameObject);
+        {
+            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeMuerte > 3.5f)
+
+                Destroy(gameObject);
+                cinemachinetargetgroup.RemoveMember(gameObject.transform);
+
+            //Missing Transform: https://forum.unity.com/threads/cinemachine-targetgroup-remove-member-issue-unity-2019-1-0f2.680692/
         }
         deltaTimeMuerte = new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeMuerte;
 
