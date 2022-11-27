@@ -150,7 +150,7 @@ public class PisoController : MonoBehaviour
             fuerzaX = padreRb.mass * (padreRb.velocity.x / Time.deltaTime);
             fuerzaY = padreRb.mass * (padreRb.velocity.y / Time.deltaTime) - personajeRb.mass * (personajeRb.velocity.y / Time.deltaTime);
             fuerzaY = fuerzaY >= 0 ? fuerzaY : 0f;
-            Debug.Log(fuerzaY);
+            //Debug.Log(fuerzaY);
             personajeRb.AddForce(new Vector2(fuerzaX, fuerzaY));
             estaEnPiso = true;
 

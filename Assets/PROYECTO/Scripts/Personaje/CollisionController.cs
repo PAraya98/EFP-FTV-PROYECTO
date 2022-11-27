@@ -16,7 +16,13 @@ public class CollisionController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.layer);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Muerte"))
+        {
+            estaMuerto = true;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Muerte"))
         {
             estaMuerto = true;
