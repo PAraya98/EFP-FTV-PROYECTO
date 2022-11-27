@@ -13,7 +13,9 @@ public class RespawnController : MonoBehaviour
     [BoxGroup("Valores requeridos")]
     public bool contarEntradaTeclado = false;
 
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    [BoxGroup("Dependencias")]
+    [ReadOnly]
+    [SerializeField]
     private List<GameObject> listaPlayer;
 
     private Vector3[] listaPlayerPosicion;
@@ -30,12 +32,12 @@ public class RespawnController : MonoBehaviour
         instance.name = "PlayerInput";
     }
 
-    struct instanciaJugador 
+    struct instanciaJugador
     {
-        GameObject  player;
-        Color       color;
-        Transform   posision;
-        int         hashMando;
+        GameObject player;
+        Color color;
+        Transform posision;
+        int hashMando;
     }
 
     void Start()
@@ -76,7 +78,7 @@ public class RespawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TODO: CREAR EL JUGADOR -> HACERLO HIJO DE JUGADDORAES -> DEFINIR PARÁMETROS INICIALES
+        //TODO: CREAR EL JUGADOR -> HACERLO HIJO DE JUGADDORAES -> DEFINIR PARï¿½METROS INICIALES
 
         for (int i = 0; i < listaPlayer.Count; i++)
         {
@@ -95,5 +97,5 @@ public class RespawnController : MonoBehaviour
         }
     }
 
-    
-}   
+
+}
