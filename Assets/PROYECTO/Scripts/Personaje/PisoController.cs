@@ -47,7 +47,7 @@ public class PisoController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Piso"))
         {
-            personaje.parent = jugadores;
+            //personaje.parent = jugadores;
             padreRb = null;
             estaEnPiso = false;
         }
