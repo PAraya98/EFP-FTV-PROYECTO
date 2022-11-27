@@ -97,9 +97,12 @@ public class AnimationController : MonoBehaviour
         else
         {
             if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeMuerte > 3.5f)
-
+            {
                 Destroy(gameObject);
                 cinemachinetargetgroup.RemoveMember(gameObject.transform);
+            }
+
+                
 
             //Missing Transform: https://forum.unity.com/threads/cinemachine-targetgroup-remove-member-issue-unity-2019-1-0f2.680692/
         }
