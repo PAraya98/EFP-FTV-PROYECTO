@@ -7,6 +7,10 @@ public class PisoController : MonoBehaviour
 {
     [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
     private bool estaEnPiso;
+    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
+    private float fuerzaX;
+    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
+    private float fuerzaY;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private Rigidbody2D personajeRb;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
@@ -28,19 +32,22 @@ public class PisoController : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    private void Update()
     {
-
+        /* 
         if (padreRb)
         {
-            Debug.Log(personaje.name + "->" + padreRb.name + "->" + getParentsVelocityY(personaje.transform.parent));
-            float fuerzaX = 0f;
-            if (Mathf.Abs(getParentsVelocityX(personaje.transform.parent)) > 0.1f)
+            //Debug.Log(personaje.name + "->" + padreRb.name + "->" + getParentsVelocityY(personaje.transform.parent));
+
+            Debug.Log(personaje.name + " sobre "+ padreRb.name + " =" + padreRb.mass + " * " + "(" + padreRb.velocity.x + " / " + Time.deltaTime + ")");
+            fuerzaX = 0f;
+            fuerzaY = 0f;
+            if (Mathf.Abs(padreRb.velocity.x) > 0.1f)
             {
-                //fuerzaX = padreRb.mass * (padreRb.velocity.x / Time.deltaTime);
-                fuerzaX = getParentsVelocityX(personaje.transform.parent);
+                //fuerzaX = padreRb.mass * (padreRb.velocity.x / Time.deltaTime);                
+                //fuerzaX = getParentsVelocityX(personaje.transform.parent);
             }
-            float fuerzaY = 0f;
+            
             if (padreRb.velocity.y > 0f && !movimientoController.EstaSaltando())
             {
                 fuerzaY = padreRb.mass * (padreRb.velocity.y / Time.deltaTime) - personajeRb.mass * (personajeRb.velocity.y / Time.deltaTime);
@@ -49,12 +56,19 @@ public class PisoController : MonoBehaviour
             //float fuerzaX = getParentsVelocityX(personaje.transform.parent);
             //float fuerzaY = getParentsVelocityY(personaje.transform.parent) - (personajeRb.mass * (personajeRb.velocity.y / Time.deltaTime));
             //fuerzaY = (movimientoController.EstaSaltando() ? 0f : fuerzaY >= 0 ? fuerzaY : 0f);
-           personajeRb.AddForce(new Vector2( fuerzaX, fuerzaY ));
-
-             
-           
+            personajeRb.AddForce(new Vector2(fuerzaX, fuerzaY));
+        }
+        */
+    }
+    /*
+    private void FixedUpdate()
+    {
+        if (false)
+        {
+           // personajeRb.AddForce(new Vector2(fuerzaX, fuerzaY));
         }
     }
+    */
 
     private float getParentsVelocityX(Transform parent)
     {
@@ -127,6 +141,23 @@ public class PisoController : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Piso"))
+        {
+            personaje.parent = collision.transform;
+            padreRb = collision.gameObject.GetComponent<Rigidbody2D>(); ;
+            personaje.position = new Vector3(personaje.position.x, personaje.position.y, 0f);
+            fuerzaX = padreRb.mass * (padreRb.velocity.x / Time.deltaTime);
+            fuerzaY = padreRb.mass * (padreRb.velocity.y / Time.deltaTime) - personajeRb.mass * (personajeRb.velocity.y / Time.deltaTime);
+            fuerzaY = fuerzaY >= 0 ? fuerzaY : 0f;
+            Debug.Log(fuerzaY);
+            personajeRb.AddForce(new Vector2(fuerzaX, fuerzaY));
+            estaEnPiso = true;
+
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Piso"))
         {
