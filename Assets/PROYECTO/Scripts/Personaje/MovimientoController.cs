@@ -150,15 +150,6 @@ public class MovimientoController : MonoBehaviour
             Vector3 nuevaEscalaLocal = transform.localScale;
             nuevaEscalaLocal.x *= -1f;            
             transform.localScale = nuevaEscalaLocal;
-            
-            foreach (Transform child in transform)
-            {
-                nuevaEscalaLocal = child.localScale;
-                nuevaEscalaLocal.x *= -1f;
-                child.localScale = nuevaEscalaLocal;
-                child.localPosition = new Vector3(-child.localPosition.x, child.localPosition.y, 0);
-                child.position = new Vector3(child.position.x, child.position.y, 0);
-            }
         }
     }
 

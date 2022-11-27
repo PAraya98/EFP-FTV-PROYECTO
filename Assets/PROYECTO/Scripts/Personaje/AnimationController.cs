@@ -46,7 +46,6 @@ public class AnimationController : MonoBehaviour
     void Start()
     {
         padreTransform = gameObject.transform.parent;
-        padreRb = padreTransform.GetComponent<Rigidbody2D>();
         tiempoDeMuerte = new TimeSpan(DateTime.Now.Ticks).TotalSeconds;
         layerPiso = LayerMask.NameToLayer("Piso");
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -70,8 +69,7 @@ public class AnimationController : MonoBehaviour
         estaEnPiso = pisoController.GetEstaEnPiso();
 
         //FIXME: Ineficiente tal vez, sería mejor obtenerlo con un método
-        padreTransform = gameObject.transform.parent;
-        padreRb = padreTransform.GetComponent<Rigidbody2D>();
+        padreRb = pisoController.GetPadreRb();
 
         if (padreRb) velocidadXReal = Mathf.Abs(padreRb.velocity.x - rb.velocity.x);
         else velocidadXReal = Mathf.Abs(rb.velocity.x);
