@@ -583,13 +583,14 @@ MonoBehaviour:
   - gameobject: {fileID: 8161799985282754228, guid: 7998928a0f075aa4cac5f9809fe39df6, type: 3}
     probabilidad: 15
   - gameobject: {fileID: 8161799985282754228, guid: 7998928a0f075aa4cac5f9809fe39df6, type: 3}
-    probabilidad: 25
+    probabilidad: 10
   - gameobject: {fileID: 8076435039582109256, guid: fffa92a8682ebd44389676c38e6f9545, type: 3}
     probabilidad: 35
   - gameobject: {fileID: 690699070076582999, guid: c26c872acdce2be438495ac33be10f0d, type: 3}
-    probabilidad: 25
+    probabilidad: 40
   error: 0
   cooldown: 0
+  habilidadObtenida: 0
   tieneHabilidad: 1
   habilidadActual: {fileID: 0}
   playerInput: {fileID: 0}

@@ -25,6 +25,8 @@ public class HabilidadController : MonoBehaviour
     public bool error = false;
     [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
     private int cooldown;
+    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
+    private float habilidadObtenida;
     [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField] 
     private bool tieneHabilidad;
     [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
@@ -54,13 +56,17 @@ public class HabilidadController : MonoBehaviour
         if (!error) 
         {
             listaHabilidades = listaHabilidades.OrderBy(o => o.probabilidad).ToList();
+            for(int i = 1; i < listaHabilidades.Count; i++)
+            {
+                listaHabilidades[i].probabilidad = listaHabilidades[i-1].probabilidad + listaHabilidades[i].probabilidad;
+            }
             StartCoroutine(SetHabilidad());
         } 
         else Debug.Log("Las probabilidades no suman 100%");
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (playerInput)
         {
@@ -72,7 +78,6 @@ public class HabilidadController : MonoBehaviour
                 personajeData.player = gameObject;
                 habilidad.transform.parent = GameObject.Find("Habilidades").transform;
                 tieneHabilidad = false;
-                habilidadActual = null;
             }
         }
         else
@@ -95,7 +100,7 @@ public class HabilidadController : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
         //Se asigna la habilidad
-        float habilidadObtenida = Random.Range(0f, 100f);
+        habilidadObtenida = Random.Range(0f, 100f);
         float rango_inicial;
         float rango_final;
         for (int i = 0; i < listaHabilidades.Count; i++)
