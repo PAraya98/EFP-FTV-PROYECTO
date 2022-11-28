@@ -123,7 +123,7 @@ public class AnimationController : MonoBehaviour
         {
             if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeVictoria - 0.15 > tiempoDeVictoria)
                 cinemachinetargetgroup.RemoveMember(gameObject.transform);
-            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeVictoria > tiempoDeVictoria)
+            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeVictoria > tiempoVictoria)
                 Destroy(gameObject);
         }
     }
