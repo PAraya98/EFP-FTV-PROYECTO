@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using TMPro;
+using UnityEngine.UI;
 public class InfoPlayerUIController : MonoBehaviour
 {
     [BoxGroup("Valores requeridos")]
@@ -13,6 +14,8 @@ public class InfoPlayerUIController : MonoBehaviour
     [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
     private int contadorMuertes = 0;
     [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
+    private bool victoria = false;
+    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
     private int contadorVictorias = 0;
 
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
@@ -22,10 +25,13 @@ public class InfoPlayerUIController : MonoBehaviour
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private TextMeshProUGUI textVictorias;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
-    private Collider2D playerCollider;
+    private TextMeshProUGUI textCooldown;
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    private Image imageHabilidad;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private CollisionController collisionController;
-
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    private HabilidadController habilidadController;
     
 
 
@@ -33,39 +39,88 @@ public class InfoPlayerUIController : MonoBehaviour
     {
         if(player)
         {
+            victoria = false;
+            estaMuerto = false;
             collisionController = player.GetComponent<CollisionController>();
+            habilidadController = player.GetComponent<HabilidadController>();
             playerName = player.name;
-            playerCollider = player.GetComponent<Collider2D>();
-            textMuertes = gameObject.transform.Find("Panel - Info Muertes")
+
+            //Panel de muertes
+            textMuertes = gameObject.transform
+                          .Find("Panel - Info Muertes")
                           .Find("Text - Contador Muertes")
                           .GetComponent<TextMeshProUGUI>();
-            textVictorias = gameObject.transform.Find("Panel - Info Victorias")
+            textMuertes.text = "x" + contadorMuertes;
+
+            // panel de victorias
+            textVictorias = gameObject.transform
+                          .Find("Panel - Info Victorias")
                           .Find("Text - Contador Victorias")
                           .GetComponent<TextMeshProUGUI>();
-            textMuertes.text = "x" + contadorMuertes;
             textVictorias.text = "x" + contadorVictorias;
+
+            // panel de habilidad
+
+            textCooldown = gameObject.transform
+                          .Find("Panel - Habilidad")
+                          .Find("Text - Cooldown")
+                          .GetComponent<TextMeshProUGUI>();
+
+            imageHabilidad = gameObject.transform
+                          .Find("Panel - Habilidad")
+                          .Find("Image - Habilidad")
+                          .GetComponent<Image>();
+
+            imageHabilidad.enabled = false;
+
         }
         
     }
 
     // Update is called once per frame
+
+    public int GetContadorVictorias()
+    {
+        return contadorVictorias;
+    }
     void Update()
     {
-        if (estaMuerto && !player)
+        if (player)
         {
-            player = GameObject.Find(playerName);
-            if(player)
+            if (!victoria && collisionController.getVictoria())
             {
-                playerCollider = player.GetComponent<Collider2D>();
+                contadorVictorias++;
+                textVictorias.text = "x" + contadorVictorias;
+                victoria = true;
+            }
+            if (!estaMuerto && collisionController.getEstaMuerto())
+            {
+                contadorMuertes++;
+                textMuertes.text = "x" + contadorMuertes;
+                estaMuerto = true;
+            }          
+            if(!habilidadController.getTieneHabilidad())
+            {
+                textCooldown.enabled = true;
+                imageHabilidad.enabled = false;
+                textCooldown.text = habilidadController.getCooldown().ToString();
+            }
+            else
+            {   
+                textCooldown.enabled = false;
+                imageHabilidad.enabled = true;
+                imageHabilidad.sprite = habilidadController.getSpriteHabilidad();
+            }
+        }
+        else
+        {   player = GameObject.Find(playerName);
+            if (player)
+            {
+                habilidadController = player.GetComponent<HabilidadController>();
+                collisionController = player.GetComponent<CollisionController>();
+                victoria = false;
                 estaMuerto = false;
-            }            
+            }
         }
-        if (!estaMuerto && player && collisionController.getEstaMuerto())
-        {
-            contadorMuertes++;
-            textMuertes.text = "x" + contadorMuertes;
-            estaMuerto = true;
-        }
-        
     }
 }

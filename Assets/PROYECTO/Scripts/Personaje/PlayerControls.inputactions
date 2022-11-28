@@ -6,7 +6,7 @@
             "id": "265c38f5-dd18-4d34-b198-aec58e1627ff",
             "actions": [
                 {
-                    "name": "fire",
+                    "name": "habilidad",
                     "type": "Button",
                     "id": "1077f913-a9f9-41b1-acb3-b9ee0adbc744",
                     "expectedControlType": "Button",
@@ -46,18 +46,40 @@
                 {
                     "name": "",
                     "id": "abb776f3-f329-4f7b-bbf8-b577d13be018",
-                    "path": "*/{PrimaryAction}",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "fire",
+                    "action": "habilidad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cbda0674-4573-4fbc-84d2-838545fbb3ec",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "habilidad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da11752d-0283-43fe-b686-3ce97b735de9",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "habilidad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "e1b8c4dd-7b3a-4db6-a93a-0889b59b1afc",
-                    "path": "<Gamepad>/leftStick",
+                    "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -66,7 +88,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Dpad",
+                    "name": "AWDS",
                     "id": "cefc16fc-557a-44b0-939f-2ad792876b07",
                     "path": "Dpad",
                     "interactions": "",
@@ -119,6 +141,17 @@
                     "action": "mover",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d798557b-9075-4cba-87c2-bfeb64d12b87",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "mover",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

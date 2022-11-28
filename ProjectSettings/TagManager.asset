@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Escenario
-  - Objectivo - Victoria
   - CameraGroup
+  - Victoria
   layers:
   - Default
   - TransparentFX
@@ -16,7 +16,7 @@ TagManager:
   - UI
   - Piso
   - Muerte
-  - 
+  - Victoria
   - 
   - 
   - 

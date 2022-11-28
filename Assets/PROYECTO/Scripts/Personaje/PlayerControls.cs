@@ -28,7 +28,7 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
             ""id"": ""265c38f5-dd18-4d34-b198-aec58e1627ff"",
             ""actions"": [
                 {
-                    ""name"": ""fire"",
+                    ""name"": ""habilidad"",
                     ""type"": ""Button"",
                     ""id"": ""1077f913-a9f9-41b1-acb3-b9ee0adbc744"",
                     ""expectedControlType"": ""Button"",
@@ -68,18 +68,40 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""abb776f3-f329-4f7b-bbf8-b577d13be018"",
-                    ""path"": ""*/{PrimaryAction}"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""fire"",
+                    ""action"": ""habilidad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbda0674-4573-4fbc-84d2-838545fbb3ec"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""habilidad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da11752d-0283-43fe-b686-3ce97b735de9"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""habilidad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""e1b8c4dd-7b3a-4db6-a93a-0889b59b1afc"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""path"": ""<Gamepad>/dpad"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -88,7 +110,7 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Dpad"",
+                    ""name"": ""AWDS"",
                     ""id"": ""cefc16fc-557a-44b0-939f-2ad792876b07"",
                     ""path"": ""Dpad"",
                     ""interactions"": """",
@@ -141,6 +163,17 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""action"": ""mover"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d798557b-9075-4cba-87c2-bfeb64d12b87"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -215,7 +248,7 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
 }");
         // gameplay
         m_gameplay = asset.FindActionMap("gameplay", throwIfNotFound: true);
-        m_gameplay_fire = m_gameplay.FindAction("fire", throwIfNotFound: true);
+        m_gameplay_habilidad = m_gameplay.FindAction("habilidad", throwIfNotFound: true);
         m_gameplay_mover = m_gameplay.FindAction("mover", throwIfNotFound: true);
         m_gameplay_salto = m_gameplay.FindAction("salto", throwIfNotFound: true);
         m_gameplay_correr = m_gameplay.FindAction("correr", throwIfNotFound: true);
@@ -278,7 +311,7 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
     // gameplay
     private readonly InputActionMap m_gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
-    private readonly InputAction m_gameplay_fire;
+    private readonly InputAction m_gameplay_habilidad;
     private readonly InputAction m_gameplay_mover;
     private readonly InputAction m_gameplay_salto;
     private readonly InputAction m_gameplay_correr;
@@ -286,7 +319,7 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
     {
         private @SimpleControls m_Wrapper;
         public GameplayActions(@SimpleControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @fire => m_Wrapper.m_gameplay_fire;
+        public InputAction @habilidad => m_Wrapper.m_gameplay_habilidad;
         public InputAction @mover => m_Wrapper.m_gameplay_mover;
         public InputAction @salto => m_Wrapper.m_gameplay_salto;
         public InputAction @correr => m_Wrapper.m_gameplay_correr;
@@ -299,9 +332,9 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
             {
-                @fire.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
-                @fire.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
-                @fire.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
+                @habilidad.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnHabilidad;
+                @habilidad.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnHabilidad;
+                @habilidad.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnHabilidad;
                 @mover.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMover;
                 @mover.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMover;
                 @mover.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMover;
@@ -315,9 +348,9 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @fire.started += instance.OnFire;
-                @fire.performed += instance.OnFire;
-                @fire.canceled += instance.OnFire;
+                @habilidad.started += instance.OnHabilidad;
+                @habilidad.performed += instance.OnHabilidad;
+                @habilidad.canceled += instance.OnHabilidad;
                 @mover.started += instance.OnMover;
                 @mover.performed += instance.OnMover;
                 @mover.canceled += instance.OnMover;
@@ -333,7 +366,7 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
     public GameplayActions @gameplay => new GameplayActions(this);
     public interface IGameplayActions
     {
-        void OnFire(InputAction.CallbackContext context);
+        void OnHabilidad(InputAction.CallbackContext context);
         void OnMover(InputAction.CallbackContext context);
         void OnSalto(InputAction.CallbackContext context);
         void OnCorrer(InputAction.CallbackContext context);

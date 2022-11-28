@@ -8,24 +8,33 @@ using Cinemachine;
 public class AnimationController : MonoBehaviour
 {
     //Constantes
-    [BoxGroup("Constantes del personaje")]
-    [ReadOnly]
-    public float velocidadCaminando = 3f;
-    [BoxGroup("Constantes del personaje")]
-    [ReadOnly]
-    public float velocidadCorriendo = 4f;
+    [BoxGroup("Constantes del personaje")][ReadOnly]
+    public float velocidadCaminando = 2.025f;
+    [BoxGroup("Constantes del personaje")][ReadOnly]
+    public float velocidadCorriendo = 3.75f;
+    [BoxGroup("Constantes del personaje")][ReadOnly]
+    public float tiempoMuerto = 3.5f;
+    [BoxGroup("Constantes del personaje")][ReadOnly]
+    public float tiempoVictoria = 3.5f;
 
     //Variables del personaje en movimiento
-    [BoxGroup("Variables en tiempo real")][ReadOnly]
-    public bool estaEnPiso;
-    [BoxGroup("Variables en tiempo real")][ReadOnly]
-    public bool estaMuerto;
-    [BoxGroup("Variables en tiempo real")][ReadOnly]
-    public double tiempoDeMuerte;
-    [BoxGroup("Variables en tiempo real")][ReadOnly]
-    public double deltaTimeMuerte;
-    [BoxGroup("Variables en tiempo real")][ReadOnly]
-    public float velocidadXReal;
+    [BoxGroup("Variables en tiempo real")][ReadOnly][SerializeField]
+    private bool estaEnPiso;
+
+    [BoxGroup("Variables en tiempo real")][ReadOnly][SerializeField]
+    private bool estaMuerto;
+    [BoxGroup("Variables en tiempo real")][ReadOnly][SerializeField]
+    private double tiempoDeMuerte;
+
+
+    [BoxGroup("Variables en tiempo real")][ReadOnly][SerializeField]
+    private bool victoria;
+    [BoxGroup("Variables en tiempo real")][ReadOnly][SerializeField]
+    private double tiempoDeVictoria;
+
+
+    [BoxGroup("Variables en tiempo real")][ReadOnly][SerializeField]
+    private float velocidadXReal;
 
     //Variables privadas obtenidas desde otros gameObject
     [BoxGroup("Dependencias")][ReadOnly][SerializeField]
@@ -46,6 +55,7 @@ public class AnimationController : MonoBehaviour
     private CollisionController collisionController;
     [BoxGroup("Dependencias")][ReadOnly][SerializeField]
     private CinemachineTargetGroup cinemachinetargetgroup;
+
     void Start()
     {
         padreTransform = gameObject.transform.parent;
@@ -69,6 +79,13 @@ public class AnimationController : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             
         }
+        else if(collisionController.getVictoria() && !victoria)
+        {
+            victoria = true;
+            animator.Play("victoria");
+            tiempoDeVictoria = new TimeSpan(DateTime.Now.Ticks).TotalSeconds;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX  | RigidbodyConstraints2D.FreezeRotation;
+        }
 
         estaEnPiso = pisoController.GetEstaEnPiso();
 
@@ -80,7 +97,7 @@ public class AnimationController : MonoBehaviour
 
 
         //Animaciones de movimiento
-        if (!estaMuerto)
+        if (!estaMuerto && !victoria)
         {
             if (velocidadXReal <= velocidadCorriendo - 0.1f && velocidadXReal > 0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("caminando"))
                 animator.Play("caminando");
@@ -94,20 +111,22 @@ public class AnimationController : MonoBehaviour
                 animator.Play("idle");
         }
         //Muerte del personaje
-        else
-        {
-            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeMuerte > 3.5f)
+        else if(estaMuerto)
+        {   // espera a que termine el tiempo para eliminarlo
+            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeMuerte > tiempoMuerto)
             {
                 Destroy(gameObject);
                 cinemachinetargetgroup.RemoveMember(gameObject.transform);
             }
-
-                
-
-            //Missing Transform: https://forum.unity.com/threads/cinemachine-targetgroup-remove-member-issue-unity-2019-1-0f2.680692/
         }
-        deltaTimeMuerte = new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeMuerte;
-
+        else if (victoria)
+        {   // espera a que termine el tiempo para eliminarlo
+            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeVictoria > tiempoVictoria)
+            {
+                Destroy(gameObject);
+                cinemachinetargetgroup.RemoveMember(gameObject.transform);
+            }
+        }
     }
 }
 
