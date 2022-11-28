@@ -113,19 +113,18 @@ public class AnimationController : MonoBehaviour
         //Muerte del personaje
         else if(estaMuerto)
         {   // espera a que termine el tiempo para eliminarlo
-            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeMuerte > tiempoMuerto)
-            {
-                Destroy(gameObject);
+
+            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeMuerte - 0.15 > tiempoMuerto) 
                 cinemachinetargetgroup.RemoveMember(gameObject.transform);
-            }
+            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeMuerte > tiempoMuerto)            
+                Destroy(gameObject); 
         }
         else if (victoria)
-        {   // espera a que termine el tiempo para eliminarlo
-            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeVictoria > tiempoVictoria)
-            {
-                Destroy(gameObject);
+        {
+            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeVictoria - 0.15 > tiempoDeVictoria)
                 cinemachinetargetgroup.RemoveMember(gameObject.transform);
-            }
+            if (new TimeSpan(DateTime.Now.Ticks).TotalSeconds - tiempoDeVictoria > tiempoDeVictoria)
+                Destroy(gameObject);
         }
     }
 }
