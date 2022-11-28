@@ -115,6 +115,10 @@ public class MovimientoController : MonoBehaviour
         else return false;
     }
 
+    public int GetMirandoHacia()
+    {
+        return transform.localScale.x > 0 ? 1 : -1;
+    }
     private void FixedUpdate()
     {   // Se asigna la velocidad de movimiento
         if (corriendo && estaEnPiso) // Si esta corriendo en el piso

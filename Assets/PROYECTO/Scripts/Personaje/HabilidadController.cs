@@ -34,7 +34,9 @@ public class HabilidadController : MonoBehaviour
     private PlayerInput playerInput;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
     private Transform habilidadSpawn;
-
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    private CollisionController collisionController;
+    
     // Start is called before the first frame update
 
     void Start()
@@ -42,6 +44,7 @@ public class HabilidadController : MonoBehaviour
         cooldown = tiempoDeCooldown;
         float probabilidad = 100f;
         tieneHabilidad = false;
+        collisionController = gameObject.GetComponent<CollisionController>();
         habilidadSpawn = transform.Find("habilidad spawn").transform;
         foreach (Habilidad habilidad in listaHabilidades)
         {
@@ -61,9 +64,12 @@ public class HabilidadController : MonoBehaviour
     {
         if (playerInput)
         {
-            if (!error && playerInput.actions["habilidad"].IsPressed() && tieneHabilidad)
+            if (!error && playerInput.actions["habilidad"].IsPressed() && tieneHabilidad && !collisionController.getEstaMuerto() && !collisionController.getVictoria())
             {
                 GameObject habilidad = Instantiate(habilidadActual, habilidadSpawn.position, Quaternion.identity);
+                PersonajeData personajeData = habilidad.AddComponent<PersonajeData>();
+
+                personajeData.player = gameObject;
                 habilidad.transform.parent = GameObject.Find("Habilidades").transform;
                 tieneHabilidad = false;
                 habilidadActual = null;
@@ -76,7 +82,7 @@ public class HabilidadController : MonoBehaviour
     }
 
     public bool getTieneHabilidad() { return tieneHabilidad; }
-    public Sprite getSpriteHabilidad() { return tieneHabilidad ? habilidadActual.GetComponent<SpriteRenderer>().sprite : null; }
+    public Sprite getSpriteHabilidad() { return habilidadActual.GetComponent<SpriteRenderer>().sprite; }
     public int getCooldown() { return cooldown; }
 
     private bool gastoHabilidad() { return !tieneHabilidad; }

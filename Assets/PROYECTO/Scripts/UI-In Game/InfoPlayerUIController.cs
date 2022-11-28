@@ -85,7 +85,18 @@ public class InfoPlayerUIController : MonoBehaviour
     }
     void Update()
     {
-        if (player)
+        if (!player)
+        {
+            player = GameObject.Find(playerName);
+            if (player)
+            {
+                habilidadController = player.GetComponent<HabilidadController>();
+                collisionController = player.GetComponent<CollisionController>();
+                victoria = false;
+                estaMuerto = false;
+            }
+        }
+        else
         {
             if (!victoria && collisionController.getVictoria())
             {
@@ -112,15 +123,6 @@ public class InfoPlayerUIController : MonoBehaviour
                 imageHabilidad.sprite = habilidadController.getSpriteHabilidad();
             }
         }
-        else
-        {   player = GameObject.Find(playerName);
-            if (player)
-            {
-                habilidadController = player.GetComponent<HabilidadController>();
-                collisionController = player.GetComponent<CollisionController>();
-                victoria = false;
-                estaMuerto = false;
-            }
-        }
+        
     }
 }

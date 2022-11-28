@@ -578,15 +578,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55381049a528c2843ad24bc160ace062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoDeCooldown: 3
+  tiempoDeCooldown: 5
   listaHabilidades:
-  - gameobject: {fileID: 8003803409600286202}
-    probabilidad: 50
   - gameobject: {fileID: 8161799985282754228, guid: 7998928a0f075aa4cac5f9809fe39df6, type: 3}
-    probabilidad: 50
+    probabilidad: 15
+  - gameobject: {fileID: 8161799985282754228, guid: 7998928a0f075aa4cac5f9809fe39df6, type: 3}
+    probabilidad: 25
+  - gameobject: {fileID: 8076435039582109256, guid: fffa92a8682ebd44389676c38e6f9545, type: 3}
+    probabilidad: 35
+  - gameobject: {fileID: 690699070076582999, guid: c26c872acdce2be438495ac33be10f0d, type: 3}
+    probabilidad: 25
   error: 0
   cooldown: 0
   tieneHabilidad: 1
   habilidadActual: {fileID: 0}
   playerInput: {fileID: 0}
   habilidadSpawn: {fileID: 0}
+  collisionController: {fileID: 0}
