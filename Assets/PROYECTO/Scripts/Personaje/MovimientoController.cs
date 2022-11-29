@@ -117,7 +117,7 @@ public class MovimientoController : MonoBehaviour
 
     public int GetMirandoHacia()
     {
-        return transform.localScale.x > 0 ? 1 : -1;
+        return estaMirandoDerecha ? 1 : -1;
     }
     private void FixedUpdate()
     {   // Se asigna la velocidad de movimiento

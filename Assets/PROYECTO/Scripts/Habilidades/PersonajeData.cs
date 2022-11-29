@@ -13,13 +13,16 @@ public class PersonajeData : MonoBehaviour
     [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
     private string playerName;
     [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
-    private int miraInicial;
-    void Start()
+    private int direccionInicial;
+
+
+    void Awake()
     {
         movimientoController = player.GetComponent<MovimientoController>();
         playerName = player.name;
-        miraInicial = movimientoController.GetMirandoHacia();
+        direccionInicial = movimientoController.GetMirandoHacia();
     }
+
 
 
     private void Update()
@@ -43,9 +46,14 @@ public class PersonajeData : MonoBehaviour
         return null;
     }
 
-    public float ObtenerDireccionInicial()
+    public int ObtenerDireccionInicial()
     {
-        return miraInicial;
+        return direccionInicial;
+    }
+
+    public int ObtenerDireccionActual()
+    {
+        return movimientoController.GetMirandoHacia();
     }
 
     public Rigidbody2D ObtenerPlayerRb()

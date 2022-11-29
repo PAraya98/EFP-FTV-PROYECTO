@@ -40,7 +40,7 @@ public class HabilidadController : MonoBehaviour
     private CollisionController collisionController;
     
     // Start is called before the first frame update
-
+    
     void Start()
     {
         cooldown = tiempoDeCooldown;
@@ -56,10 +56,6 @@ public class HabilidadController : MonoBehaviour
         if (!error) 
         {
             listaHabilidades = listaHabilidades.OrderBy(o => o.probabilidad).ToList();
-            for(int i = 1; i < listaHabilidades.Count; i++)
-            {
-                listaHabilidades[i].probabilidad = listaHabilidades[i-1].probabilidad + listaHabilidades[i].probabilidad;
-            }
             StartCoroutine(SetHabilidad());
         } 
         else Debug.Log("Las probabilidades no suman 100%");
@@ -73,10 +69,11 @@ public class HabilidadController : MonoBehaviour
             if (!error && playerInput.actions["habilidad"].IsPressed() && tieneHabilidad && !collisionController.getEstaMuerto() && !collisionController.getVictoria())
             {
                 GameObject habilidad = Instantiate(habilidadActual, habilidadSpawn.position, Quaternion.identity);
+                habilidad.SetActive(false);
                 PersonajeData personajeData = habilidad.AddComponent<PersonajeData>();
-
                 personajeData.player = gameObject;
                 habilidad.transform.parent = GameObject.Find("Habilidades").transform;
+                habilidad.SetActive(true);
                 tieneHabilidad = false;
             }
         }
@@ -101,27 +98,14 @@ public class HabilidadController : MonoBehaviour
         }
         //Se asigna la habilidad
         habilidadObtenida = Random.Range(0f, 100f);
-        float rango_inicial;
-        float rango_final;
+        Debug.Log("La habilidad obtenida es: "+ habilidadObtenida);
+        float acumulador = 0f;
+
         for (int i = 0; i < listaHabilidades.Count; i++)
         {
-            if (i == 0)
-            {
-                rango_inicial = 0f;
-                rango_final = listaHabilidades[i].probabilidad;
-            }
-            else if (i == listaHabilidades.Count-1)
-            {
-                rango_inicial = listaHabilidades[i].probabilidad;
-                rango_final = 100f;
-            }
-            else
-            {
-                rango_inicial = listaHabilidades[i].probabilidad;
-                rango_final = listaHabilidades[i + 1].probabilidad;
-            }
+            acumulador += listaHabilidades[i].probabilidad;
 
-            if (habilidadObtenida >= rango_inicial && habilidadObtenida <= rango_final)
+            if (habilidadObtenida <= acumulador)
             {
                 habilidadActual = listaHabilidades[i].gameobject;
                 break;

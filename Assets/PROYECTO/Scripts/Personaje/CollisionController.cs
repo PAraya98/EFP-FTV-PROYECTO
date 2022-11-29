@@ -40,6 +40,10 @@ public class CollisionController : MonoBehaviour
         }
     }
 
+    public void SetEstaMuerto()
+    {
+        estaMuerto = true;
+    }
     public bool getVictoria()
     {
         return victoria;
