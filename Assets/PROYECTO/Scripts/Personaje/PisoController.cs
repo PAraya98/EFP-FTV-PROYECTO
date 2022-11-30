@@ -65,11 +65,13 @@ public class PisoController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Piso"))
         {
-            //personaje.parent = collision.transform;
-            padreRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            personaje.position = new Vector3(personaje.position.x, personaje.position.y, 0f);
-            fuerzaX = padreRb.mass * (padreRb.velocity.x / Time.deltaTime);
-            personajeRb.AddForce(new Vector2(fuerzaX, 0f));
+            if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
+            {
+                padreRb = collision.gameObject.GetComponent<Rigidbody2D>();
+                personaje.position = new Vector3(personaje.position.x, personaje.position.y, 0f);
+                fuerzaX =  (padreRb.velocity.x / Time.deltaTime);
+                personajeRb.AddForce(new Vector2(fuerzaX, 0f));
+            }
             estaEnPiso = true;
         }
     }
@@ -78,9 +80,12 @@ public class PisoController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Piso"))
         {
-            //personaje.parent = collision.transform;
-            padreRb = collision.gameObject.GetComponent<Rigidbody2D>(); ;
-            personaje.position = new Vector3(personaje.position.x, personaje.position.y, 0f);
+            if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
+            {
+                //personaje.parent = collision.transform;
+                padreRb = collision.gameObject.GetComponent<Rigidbody2D>(); ;
+                personaje.position = new Vector3(personaje.position.x, personaje.position.y, 0f);
+            }
             estaEnPiso = true;
         }
     }
