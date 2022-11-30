@@ -653,19 +653,19 @@ MonoBehaviour:
   tiempoDeCooldown: 5
   listaHabilidades:
   - gameobject: {fileID: 7646581638649130033, guid: dd96e954544d9d845a24e1bd69537cad, type: 3}
-    probabilidad: 1
+    probabilidad: 10
   - gameobject: {fileID: 7646581638649130033, guid: abe02b7fffcbd6e4bb48fcf8973bd3a8, type: 3}
-    probabilidad: 1
+    probabilidad: 5
   - gameobject: {fileID: 7646581638649130033, guid: 6b943e7926eb40f40b8fe41ac8b5bdfc, type: 3}
-    probabilidad: 1
+    probabilidad: 10
   - gameobject: {fileID: 7646581638649130033, guid: 64b3fb40f0b6e474b9911d32a9476982, type: 3}
-    probabilidad: 1
+    probabilidad: 30
   - gameobject: {fileID: 7646581638649130033, guid: 193e563e0f3601240aff2287590342bd, type: 3}
-    probabilidad: 1
+    probabilidad: 20
   - gameobject: {fileID: 7646581638649130033, guid: 2a66bc5a7db32a9449dd63ee167a4635, type: 3}
-    probabilidad: 94
+    probabilidad: 15
   - gameobject: {fileID: 7646581638649130033, guid: 7dce4b64b6ec8ea4a8a2514c3081c90b, type: 3}
-    probabilidad: 1
+    probabilidad: 10
   error: 0
   cooldown: 0
   habilidadObtenida: 0
