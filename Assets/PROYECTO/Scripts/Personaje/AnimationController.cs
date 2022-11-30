@@ -78,7 +78,9 @@ public class AnimationController : MonoBehaviour
             transform.gameObject.tag = "Untagged";
             tiempoDeMuerte = new TimeSpan(DateTime.Now.Ticks).TotalSeconds;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
+
+
         }
         else if(collisionController.getVictoria() && !victoria)
         {

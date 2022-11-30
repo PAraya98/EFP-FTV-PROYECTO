@@ -43,7 +43,11 @@ public class NITROCrash : MonoBehaviour
         return explosionEnCurso;
     }
     
-
+    public void DetonarNitro()
+    {
+        explosionEnCurso = true;
+        StartCoroutine(DestruccionInmediata());
+    }
 
     IEnumerator DestruccionInmediata()
     {

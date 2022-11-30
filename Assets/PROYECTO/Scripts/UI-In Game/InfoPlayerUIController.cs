@@ -37,7 +37,8 @@ public class InfoPlayerUIController : MonoBehaviour
     void Start()
     {
         RuntimePreviewGenerator.OrthographicMode = false;
-        RuntimePreviewGenerator.BackgroundColor = new Color(0, 0, 0, 0);
+        //Para que la imágen sea transparente  Pero da Lag 
+        //RuntimePreviewGenerator.BackgroundColor = new Color(0, 0, 0, 0);
         RuntimePreviewGenerator.PreviewDirection = new Vector3(0, 0, 1);
         RuntimePreviewGenerator.OrthographicMode = true;
 
