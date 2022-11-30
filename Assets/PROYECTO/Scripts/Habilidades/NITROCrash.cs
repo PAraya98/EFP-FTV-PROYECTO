@@ -11,7 +11,7 @@ public class NITROCrash : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();   
@@ -51,7 +51,7 @@ public class NITROCrash : MonoBehaviour
 
     IEnumerator DestruccionInmediata()
     {
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        if(rb) rb.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.Play("TNTExplosion");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle")) 
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
