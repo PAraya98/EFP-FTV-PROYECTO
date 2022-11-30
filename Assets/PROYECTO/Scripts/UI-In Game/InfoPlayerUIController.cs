@@ -27,17 +27,21 @@ public class InfoPlayerUIController : MonoBehaviour
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private TextMeshProUGUI textCooldown;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
-    private Image imageHabilidad;
+    private RawImage imageHabilidad;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private CollisionController collisionController;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private HabilidadController habilidadController;
-    
 
 
     void Start()
     {
-        if(player)
+        RuntimePreviewGenerator.OrthographicMode = false;
+        RuntimePreviewGenerator.BackgroundColor = new Color(0, 0, 0, 0);
+        RuntimePreviewGenerator.PreviewDirection = new Vector3(0, 0, 1);
+        RuntimePreviewGenerator.OrthographicMode = true;
+
+        if (player)
         {
             victoria = false;
             estaMuerto = false;
@@ -69,7 +73,7 @@ public class InfoPlayerUIController : MonoBehaviour
             imageHabilidad = gameObject.transform
                           .Find("Panel - Habilidad")
                           .Find("Image - Habilidad")
-                          .GetComponent<Image>();
+                          .GetComponent<RawImage>();
 
             imageHabilidad.enabled = false;
 
@@ -77,6 +81,19 @@ public class InfoPlayerUIController : MonoBehaviour
         
     }
 
+    public static Texture2D readableClone(Texture2D texture2D)
+    {
+
+        RenderTexture rt = new RenderTexture(texture2D.width, texture2D.height, 24);
+        RenderTexture.active = rt;
+        Graphics.Blit(texture2D, rt);
+
+        Texture2D result = new Texture2D(texture2D.width, texture2D.height);
+        result.ReadPixels(new Rect(0, 0, texture2D.width, texture2D.height), 0, 0);
+        result.Apply();
+
+        return result;
+    }
     // Update is called once per frame
 
     public int GetContadorVictorias()
@@ -120,7 +137,8 @@ public class InfoPlayerUIController : MonoBehaviour
             {   
                 textCooldown.enabled = false;
                 imageHabilidad.enabled = true;
-                imageHabilidad.sprite = habilidadController.getSpriteHabilidad();
+                imageHabilidad.texture = RuntimePreviewGenerator.GenerateModelPreview(habilidadController.getTransformHabilidad());
+                //habilidadController.getSpriteHabilidad();
             }
         }
         

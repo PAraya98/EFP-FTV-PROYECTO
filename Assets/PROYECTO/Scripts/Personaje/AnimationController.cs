@@ -75,6 +75,7 @@ public class AnimationController : MonoBehaviour
             transform.gameObject.layer = LayerMask.NameToLayer("Default");
             estaMuerto = true;
             animator.Play("muerte");
+            transform.gameObject.tag = "Untagged";
             tiempoDeMuerte = new TimeSpan(DateTime.Now.Ticks).TotalSeconds;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             

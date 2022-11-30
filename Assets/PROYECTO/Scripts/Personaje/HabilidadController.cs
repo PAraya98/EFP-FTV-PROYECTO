@@ -87,6 +87,7 @@ public class HabilidadController : MonoBehaviour
     public Sprite getSpriteHabilidad() { return habilidadActual ? habilidadActual.GetComponent<SpriteRenderer>().sprite : null; }
     public int getCooldown() { return cooldown; }
 
+    public Transform getTransformHabilidad() { return habilidadActual ? habilidadActual.transform : null; }
     private bool gastoHabilidad() { return !tieneHabilidad; }
     IEnumerator SetHabilidad()
     {
