@@ -7,6 +7,7 @@ TagManager:
   - Escenario
   - CameraGroup
   - Victoria
+  - Muerte
   layers:
   - Default
   - TransparentFX
