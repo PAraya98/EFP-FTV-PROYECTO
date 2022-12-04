@@ -38,7 +38,7 @@ public class PersonajeData : MonoBehaviour
     }
 
     // Toda la información del Jugador 
-    // Evitar utilizarlo, a no ser que sea algo muy específico,
+    // Evitar utilizarlo, a no ser que sea algo muy especúƒico,
     // en vez de eso mejor agregar métodos genéricos
     public GameObject ObtenerPlayer() 
     {
@@ -65,5 +65,21 @@ public class PersonajeData : MonoBehaviour
     public string ObtenerPlayerName()
     {
         return playerName;
+    }
+    public float ObtenerVelocidadCorriendo()
+    {
+        return movimientoController.GetVelocidadCorriendo();
+    }
+    public float ObtenerVelocidadCaminando()
+    {
+        return movimientoController.GetVelocidadCaminando();
+    }
+    public void CambiarVelocidadCorriendo(float NuevaVelocidad) 
+    {
+        movimientoController.SetVelocidadCorriendo(NuevaVelocidad);
+    }
+    public void CambiarVelocidadCaminando(float NuevaVelocidad)
+    {
+        movimientoController.SetVelocidadCaminando(NuevaVelocidad);
     }
 }

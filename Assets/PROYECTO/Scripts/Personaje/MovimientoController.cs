@@ -8,7 +8,13 @@ public class MovimientoController : MonoBehaviour
 {
     // Inspector
     //Inputs del inspector
+    //  Velocidades Iniciales que no se modifican
     [BoxGroup("Constantes del personaje")]
+    public float constVelocidadCaminando = 3f;
+    [BoxGroup("Constantes del personaje")]
+    public float constVelocidadCorriendo = 4f;
+    //  Velocidad que pueden ser modificadas
+    [BoxGroup("Constantes del personaje")]   
     public float velocidadCaminando = 3f;
     [BoxGroup("Constantes del personaje")]
     public float velocidadCorriendo = 4f;
@@ -119,6 +125,23 @@ public class MovimientoController : MonoBehaviour
     {
         return estaMirandoDerecha ? 1 : -1;
     }
+    public float GetVelocidadCorriendo()
+    {
+        return constVelocidadCorriendo;
+    }
+    public void SetVelocidadCaminando(float NuevaVelocidadCaminando) 
+    {
+        velocidadCaminando = NuevaVelocidadCaminando;
+    }
+    public float GetVelocidadCaminando() 
+    {
+        return constVelocidadCaminando;    
+    }
+    public void SetVelocidadCorriendo(float NuevaVelocidadCorriendo) 
+    {
+        velocidadCorriendo = NuevaVelocidadCorriendo;
+    }
+
     private void FixedUpdate()
     {   // Se asigna la velocidad de movimiento
         if (corriendo && estaEnPiso) // Si esta corriendo en el piso
