@@ -145,7 +145,6 @@ public class MovimientoController : MonoBehaviour
 
         estaEnPiso = pisoController.GetEstaEnPiso();
     }
-
     void GirarPersonaje()   
     {
         if (estaMirandoDerecha && mirandoHacia < 0f || !estaMirandoDerecha && mirandoHacia > 0f)
@@ -156,5 +155,4 @@ public class MovimientoController : MonoBehaviour
             transform.localScale = nuevaEscalaLocal;
         }
     }
-
 }
