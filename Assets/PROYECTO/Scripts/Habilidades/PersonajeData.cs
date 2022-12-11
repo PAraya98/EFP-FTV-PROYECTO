@@ -82,4 +82,12 @@ public class PersonajeData : MonoBehaviour
     {
         movimientoController.SetVelocidadCaminando(NuevaVelocidad);
     }
+    public Vector3 ObtenerScale()
+    {
+        return movimientoController.GetScales();
+    }
+    public void CambiarScale(Vector3 NuevaScale)
+    {
+        movimientoController.SetScales(NuevaScale);
+    }
 }
