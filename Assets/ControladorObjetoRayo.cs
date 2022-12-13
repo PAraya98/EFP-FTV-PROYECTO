@@ -6,10 +6,10 @@ public class ControladorObjetoRayo : MonoBehaviour
 {
     // Start is called before the first frame update
     public float tiempoDesaparicion;
-    public float cambioScale;
     private PersonajeData personajeData;
-    private MovimientoController movimientoController;
     private List<GameObject> listaPlayer;
+    private Animator animator;
+    private HabilidadController habilidad;
     void Start()
     {
         GameObject player1 = GameObject.Find("Player 1");
@@ -24,8 +24,10 @@ public class ControladorObjetoRayo : MonoBehaviour
             {
                 if (personajeData.ObtenerPlayerName() != listaPlayer[i].name)
                 {
-                    movimientoController = listaPlayer[i].GetComponent<MovimientoController>();
-                    movimientoController.SetScales(new Vector3(cambioScale, cambioScale, 0));
+                    animator = listaPlayer[i].GetComponent<Animator>();
+                    habilidad = listaPlayer[i].GetComponent<HabilidadController>();
+                    habilidad.SetHabilidadControl(false);
+                    animator.SetBool("chico",true);
                 }
             }
         }
@@ -36,8 +38,9 @@ public class ControladorObjetoRayo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+    
     IEnumerator Destruccion(List<GameObject> listaPlayer)
     {
         yield return new WaitForSeconds(tiempoDesaparicion);
@@ -47,11 +50,36 @@ public class ControladorObjetoRayo : MonoBehaviour
             {
                 if (personajeData.ObtenerPlayerName() != listaPlayer[i].name)
                 {
-                    movimientoController = listaPlayer[i].GetComponent<MovimientoController>();
-                    movimientoController.SetScales(movimientoController.GetScales());
+                    animator = listaPlayer[i].GetComponent<Animator>();
+                    habilidad = listaPlayer[i].GetComponent<HabilidadController>();
+                    StartCoroutine(AnimationPlayer(animator, habilidad));
                 }
             }
         }
+        yield return new WaitForSeconds(15.0f);
+        
         Destroy(gameObject);
+
+    }
+    IEnumerator AnimationPlayer(Animator animator, HabilidadController habilidad)
+    {
+        // COMPROBAR DESPUES SI LOS PLAYER ESTAN CONECTADO SE ACHICAN AL MISMO TIEMPO
+        //idle grande
+        animator.SetBool("chico", false);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle grande"))
+        {
+            yield return new WaitForSeconds(
+                animator.GetCurrentAnimatorStateInfo(3).length - animator.GetCurrentAnimatorStateInfo(3).normalizedTime);
+        }
+        // chico
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(3).length - animator.GetCurrentAnimatorStateInfo(3).normalizedTime);
+
+        //grande
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("chico"))
+        {
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(3).length - animator.GetCurrentAnimatorStateInfo(3).normalizedTime);
+        }
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(3).length - animator.GetCurrentAnimatorStateInfo(3).normalizedTime);
+        habilidad.SetHabilidadControl(true);
     }
 }

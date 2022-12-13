@@ -38,7 +38,8 @@ public class HabilidadController : MonoBehaviour
     private Transform habilidadSpawn;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
     private CollisionController collisionController;
-    
+
+    public bool habilidadControl = true;
     // Start is called before the first frame update
     
     void Start()
@@ -66,7 +67,7 @@ public class HabilidadController : MonoBehaviour
     {
         if (playerInput)
         {
-            if (!error && playerInput.actions["habilidad"].IsPressed() && tieneHabilidad && !collisionController.getEstaMuerto() && !collisionController.getVictoria())
+            if (!error && playerInput.actions["habilidad"].IsPressed() && tieneHabilidad && !collisionController.getEstaMuerto() && !collisionController.getVictoria() && habilidadControl)
             {
                 GameObject habilidad = Instantiate(habilidadActual, habilidadSpawn.position, Quaternion.identity);
                 habilidad.SetActive(false);
@@ -89,6 +90,12 @@ public class HabilidadController : MonoBehaviour
 
     public Transform getTransformHabilidad() { return habilidadActual ? habilidadActual.transform : null; }
     private bool gastoHabilidad() { return !tieneHabilidad; }
+        
+    public void SetHabilidadControl(bool control) 
+    {
+        habilidadControl = control;
+    }
+
     IEnumerator SetHabilidad()
     {
         //Cooldown de habilidad

@@ -26,6 +26,17 @@ public class MovimientoController : MonoBehaviour
 
     [BoxGroup("Constantes del personaje")]
     public float fuerzaDeMA = 0.1f;
+    
+    // Nuevo Movimiento
+    [BoxGroup("Constantes del personaje")]
+    public float velPower = 1.2f;
+    [BoxGroup("Constantes del personaje")]
+    public float aceleracion = 9f;
+    [BoxGroup("Constantes del personaje")]
+    public float desaceleracion = 9f;
+
+    // 
+
 
     [BoxGroup("Constantes del personaje")]
     [ReadOnly]
@@ -117,11 +128,11 @@ public class MovimientoController : MonoBehaviour
 
             if (salto && estaEnPiso)
             {
-                rb.velocity = new Vector2(rb.velocity.x, fuerzaDeSalto);
+                //rb.velocity = new Vector2(rb.velocity.x, fuerzaDeSalto);
             }
             if (!salto && rb.velocity.y > 0f)
             {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             }
             if (correr)
             {
@@ -175,9 +186,11 @@ public class MovimientoController : MonoBehaviour
 
     private void FixedUpdate()
     {   // Se asigna la velocidad de movimiento
+
         if (corriendo && estaEnPiso) // Si esta corriendo en el piso
         {
-            rb.velocity = new Vector2(mirandoHacia * velocidadCorriendo, rb.velocity.y);
+            Correr();
+            //rb.velocity = new Vector2(mirandoHacia * velocidadCorriendo, rb.velocity.y);
         }
         else if (corriendo && !estaEnPiso) // Si esta corriendo en el aire xD
         {
@@ -185,7 +198,8 @@ public class MovimientoController : MonoBehaviour
         }
         else if (!corriendo && estaEnPiso) // Si esta caminando en el piso
         {
-            rb.velocity = new Vector2(mirandoHacia * velocidadCaminando, rb.velocity.y);
+            Caminar();
+            //rb.velocity = new Vector2(mirandoHacia * velocidadCaminando, rb.velocity.y);
         }
         else if (!corriendo && !estaEnPiso) // Si esta caminando en el aire
         {
@@ -199,15 +213,32 @@ public class MovimientoController : MonoBehaviour
 
         estaEnPiso = pisoController.GetEstaEnPiso();
     }
-
+    void Correr()
+    {
+        float targetSpeed = mirandoHacia * velocidadCorriendo;
+        float speedDif = targetSpeed - rb.velocity.x;
+        float accelRate = (Mathf.Abs(speedDif) > 0.01f) ? aceleracion : desaceleracion;
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+        rb.AddForce(movement * Vector2.right);
+    }
+    void Caminar()
+    {
+        float targetSpeed = mirandoHacia * velocidadCaminando;
+        float speedDif = targetSpeed - rb.velocity.x;
+        float accelRate = (Mathf.Abs(speedDif) > 0.01f) ? aceleracion : desaceleracion;
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+        rb.AddForce(movement * Vector2.right);
+    }
     void GirarPersonaje()
     {
         if (estaMirandoDerecha && mirandoHacia < 0f || !estaMirandoDerecha && mirandoHacia > 0f)
         {
+            gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
             estaMirandoDerecha = !estaMirandoDerecha;
-            Vector3 nuevaEscalaLocal = transform.localScale;
-            nuevaEscalaLocal.x *= -1f;
-            transform.localScale = nuevaEscalaLocal;
+            //Vector3 nuevaEscalaLocal = transform.localScale;
+            //nuevaEscalaLocal.x *= -1f;
+            //transform.localScale = nuevaEscalaLocal;
+            //Debug.Log("no gira");
         }
     }
 

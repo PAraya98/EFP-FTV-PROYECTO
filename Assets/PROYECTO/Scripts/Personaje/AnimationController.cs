@@ -103,7 +103,9 @@ public class AnimationController : MonoBehaviour
         if (!estaMuerto && !victoria)
         {
             if (velocidadXReal <= velocidadCorriendo - 0.1f && velocidadXReal > 0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("caminando"))
-                animator.Play("caminando");
+            {
+                animator.Play("caminando");                
+            }
             else if (velocidadXReal >= velocidadCorriendo - 0.1f && estaEnPiso && !animator.GetCurrentAnimatorStateInfo(0).IsName("corriendo"))
                 animator.Play("corriendo");
             else if (!estaEnPiso && rb.velocity.y > 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("salto"))
