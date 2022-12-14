@@ -161,6 +161,8 @@ public class MovimientoController : MonoBehaviour
             if (rb.velocity.y < 0)
             {
                 rb.gravityScale = gravityScale * fallGravityMultiplier;
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -7f));
+
             }
             else
             {

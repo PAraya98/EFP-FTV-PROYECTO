@@ -164,4 +164,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempoDesaparicion: 8
-  lentitud: 0.5
+  lentitud: 0
