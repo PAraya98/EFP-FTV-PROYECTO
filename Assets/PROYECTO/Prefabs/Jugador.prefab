@@ -531,12 +531,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ff4ec1d54378044b9a96588a86e72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  constVelocidadCaminando: 2.025
-  constVelocidadCorriendo: 3.75
-  velocidadCaminando: 2.025
-  velocidadCorriendo: 3.75
-  fuerzaDeSalto: 9.6
-  fuerzaDeMA: 0.8
+  constVelocidadCaminando: 4.025
+  constVelocidadCorriendo: 7.75
+  velocidadCaminando: 4.025
+  velocidadCorriendo: 7.75
+  fuerzaDeSalto: 10
+  fuerzaDeMA: 0.5
+  velPower: 1.2
+  aceleracion: 7
+  desaceleracion: 7
+  frictionAmount: 0.2
+  fallGravityMultiplier: 3
+  gravityScale: 9.8
+  gravityStrength: 0
   masa: 1
   velocidadHorizontal: 0
   velocidadVertical: 0

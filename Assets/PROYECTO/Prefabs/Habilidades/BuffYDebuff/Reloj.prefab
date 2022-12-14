@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7646581638649130034}
   - component: {fileID: 7829219077429100776}
   - component: {fileID: 410606482660580543}
+  - component: {fileID: -1879903015492572988}
   m_Layer: 0
   m_Name: Reloj
   m_TagString: Untagged
@@ -101,7 +102,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.4043992}
+  m_Offset: {x: 0, y: -1.0308609}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +113,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.443903, y: 0.22077703}
+  m_Size: {x: 1.443903, y: 0.96785367}
   m_EdgeRadius: 0
 --- !u!50 &7646581638649130034
 Rigidbody2D:
@@ -164,3 +165,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempoDesaparicion: 3
+--- !u!95 &-1879903015492572988
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7646581638649130033}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

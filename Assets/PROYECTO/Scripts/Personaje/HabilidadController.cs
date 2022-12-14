@@ -106,7 +106,7 @@ public class HabilidadController : MonoBehaviour
         }
         //Se asigna la habilidad
         habilidadObtenida = Random.Range(0f, 100f);
-        Debug.Log("La habilidad obtenida es: "+ habilidadObtenida);
+        //Debug.Log("La habilidad obtenida es: "+ habilidadObtenida);
         float acumulador = 0f;
 
         for (int i = 0; i < listaHabilidades.Count; i++)

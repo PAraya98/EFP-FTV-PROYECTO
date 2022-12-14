@@ -26,7 +26,7 @@ public class MovimientoController : MonoBehaviour
 
     [BoxGroup("Constantes del personaje")]
     public float fuerzaDeMA = 0.1f;
-    
+
     // Nuevo Movimiento
     [BoxGroup("Constantes del personaje")]
     public float velPower = 1.2f;
@@ -34,6 +34,15 @@ public class MovimientoController : MonoBehaviour
     public float aceleracion = 9f;
     [BoxGroup("Constantes del personaje")]
     public float desaceleracion = 9f;
+
+    [BoxGroup("Constantes del personaje")]
+    public float frictionAmount = 0.2f;
+    [BoxGroup("Constantes del personaje")]
+    public float fallGravityMultiplier = 2;
+    [BoxGroup("Constantes del personaje")]
+    public float gravityScale = 3.8f;
+    [BoxGroup("Constantes del personaje")]
+    public float gravityStrength;
 
     // 
 
@@ -98,7 +107,7 @@ public class MovimientoController : MonoBehaviour
     private PisoController pisoController;
     void Start()
     {
-        
+
         Application.targetFrameRate = 60;
         layerPiso = LayerMask.NameToLayer("Piso");
         checkPiso = GameObject.Find("Tilemap - Escenario").GetComponent<CompositeCollider2D>();
@@ -108,6 +117,12 @@ public class MovimientoController : MonoBehaviour
         playerCollider = gameObject.GetComponent<Collider2D>();
         estaEnPiso = false;
         constScale = transform.localScale;
+
+        //Calculate gravity strength using the formula (gravity = 2 * jumpHeight / timeToJumpApex^2) 
+        gravityStrength = -(2 * 7) / (1f * 1f);
+
+        //Calculate the rigidbody's gravity scale (ie: gravity strength relative to unity's gravity value, see project settings/Physics2D)
+        gravityScale = gravityStrength / Physics2D.gravity.y;
     }
 
     // Update is called once per frame
@@ -129,10 +144,11 @@ public class MovimientoController : MonoBehaviour
             if (salto && estaEnPiso)
             {
                 //rb.velocity = new Vector2(rb.velocity.x, fuerzaDeSalto);
+                Saltar();
             }
             if (!salto && rb.velocity.y > 0f)
             {
-                //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             }
             if (correr)
             {
@@ -142,6 +158,15 @@ public class MovimientoController : MonoBehaviour
             {
                 corriendo = false;
             }
+            if (rb.velocity.y < 0)
+            {
+                rb.gravityScale = gravityScale * fallGravityMultiplier;
+            }
+            else
+            {
+                rb.gravityScale = gravityScale;
+            }
+
         }
         else
         {
@@ -181,8 +206,8 @@ public class MovimientoController : MonoBehaviour
     }
     public void SetScales(Vector3 NuevaScale)
     {
-        transform.localScale = NuevaScale;       
-    }   
+        transform.localScale = NuevaScale;
+    }
 
     private void FixedUpdate()
     {   // Se asigna la velocidad de movimiento
@@ -194,7 +219,8 @@ public class MovimientoController : MonoBehaviour
         }
         else if (corriendo && !estaEnPiso) // Si esta corriendo en el aire xD
         {
-            rb.velocity = new Vector2(fuerzaDeMA * mirandoHacia * velocidadCorriendo, rb.velocity.y);
+            //rb.velocity = new Vector2(fuerzaDeMA * mirandoHacia * velocidadCorriendo, rb.velocity.y);
+            Correr();
         }
         else if (!corriendo && estaEnPiso) // Si esta caminando en el piso
         {
@@ -203,15 +229,30 @@ public class MovimientoController : MonoBehaviour
         }
         else if (!corriendo && !estaEnPiso) // Si esta caminando en el aire
         {
-            rb.velocity = new Vector2(fuerzaDeMA * mirandoHacia * velocidadCaminando, rb.velocity.y);
+            Caminar();
+            //rb.velocity = new Vector2(fuerzaDeMA * mirandoHacia * velocidadCaminando, rb.velocity.y);
         }
         else
         {
             Debug.Log("ENTRE AL ELSE UnU");
         }
 
+        #region
+        if (estaEnPiso || corriendo)
+        {
+
+            float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
+            amount *= Mathf.Sign(rb.velocity.x);
+            rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+        }
+        #endregion
 
         estaEnPiso = pisoController.GetEstaEnPiso();
+    }
+    void Saltar()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, fuerzaDeSalto);
+        //rb.AddForce(Vector2.up * fuerzaDeSalto, ForceMode2D.Impulse);
     }
     void Correr()
     {

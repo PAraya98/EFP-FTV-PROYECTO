@@ -285,7 +285,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 63579126}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -5452,7 +5452,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.859227
+  orthographic size: 6.8653135
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5677,16 +5677,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2237507920920833906, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
-      propertyPath: fuerzaDeSalto
-      value: 9.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2237507920920833906, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
-      propertyPath: velocidadCaminando
-      value: 2.025
-      objectReference: {fileID: 0}
-    - target: {fileID: 2237507920920833906, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
-      propertyPath: velocidadCorriendo
-      value: 3.75
+      propertyPath: jumpInputBufferTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2751252231889104851, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_RootOrder
@@ -5932,7 +5924,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
 --- !u!1001 &371152620
 PrefabInstance:
@@ -6482,7 +6475,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 573037802}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -6699,7 +6692,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 581341752}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -7691,7 +7684,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 939493285}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -10455,6 +10448,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 8003803409600286202, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
   playerInputPrefab: {fileID: 5743982669917793472, guid: b430a8ff51892d8469858a1075a5911e, type: 3}
   contarEntradaTeclado: 1
+  sonidoRespawn: {fileID: 2560772671264162778, guid: 52134d06642cf034abc5056e055abbc9, type: 3}
+  tiempoDesaparicion: 1
   listaPlayer: []
   cinemachinetargetgroup: {fileID: 0}
 --- !u!114 &981013285
@@ -10635,7 +10630,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1025554398}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -13183,7 +13178,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1492169916}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -21705,7 +21700,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1773057444}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -21774,6 +21769,107 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1787999631
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -1879903015492572988, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7c8e5011df2f9094bbf29f53a70ae480, type: 2}
+    - target: {fileID: -1879903015492572988, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130033, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_Name
+      value: Reloj
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130034, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_Constraints
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130035, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130035, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130035, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.40338814
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646581638649130045, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829219077429100776, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_Radius
+      value: 0.062029053
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829219077429100776, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829219077429100776, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0078a69df3d4aed4d862dbf0894eb5b4, type: 3}
 --- !u!1 &1789562843
 GameObject:
   m_ObjectHideFlags: 0
@@ -21838,7 +21934,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1789562843}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -22630,7 +22726,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1920306689}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -22763,7 +22859,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1959614016}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -23092,7 +23188,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1987497331}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -23225,7 +23321,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1991578815}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -24824,7 +24920,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2010091911}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -25189,7 +25285,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2113794119}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -25322,7 +25418,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2133840615}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8d7fc9446f267c2448997dab2fd214c9, type: 2}
+  m_Material: {fileID: 6200000, guid: 0436a94c9b8f8b94ba3a03c015c62c35, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -25483,18 +25579,6 @@ PrefabInstance:
     - target: {fileID: 1677146362287341515, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2237507920920833906, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2237507920920833906, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
-      propertyPath: velocidadCaminando
-      value: 2.025
-      objectReference: {fileID: 0}
-    - target: {fileID: 2237507920920833906, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
-      propertyPath: velocidadCorriendo
-      value: 3.75
       objectReference: {fileID: 0}
     - target: {fileID: 2751252231889104851, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_RootOrder
