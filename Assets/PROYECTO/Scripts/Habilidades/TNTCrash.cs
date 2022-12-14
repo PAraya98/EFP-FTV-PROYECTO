@@ -61,7 +61,7 @@ public class TNTCrash : MonoBehaviour
         Destroy(gameObject);
     }
     IEnumerator DestruccionInmediata()
-    {
+    {   while(rb)
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.Play("TNTExplosion");
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle")) 

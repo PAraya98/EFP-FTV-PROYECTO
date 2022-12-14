@@ -392,7 +392,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -535,7 +535,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -579,7 +579,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -922,18 +922,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Seleccion Escenario
+      m_OriginalName: Seleccion Escenario
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 47164
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
@@ -1083,7 +1083,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 33.80002}
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 237.79999
@@ -1123,6 +1123,9 @@ MonoBehaviour:
     - {fileID: -2110813487163477716, guid: a9c5686c7313c814ab0ec8c7dad15beb, type: 2}
     - {fileID: -8343691342393643791, guid: 1f1515da6fcfbd84ebbb4340bb64e1da, type: 2}
     - {fileID: 1251013103595831791, guid: 146367ea2d0ad12438b371c0eb94fc51, type: 2}
+    - {fileID: 8225333355317853511, guid: 70fe284534ee01c41bd5f7edc95d25f6, type: 2}
+    - {fileID: -1173560815449347090, guid: 6e61fc680718c1d40884f67b2ffacc98, type: 2}
+    - {fileID: 8873811614422225955, guid: 8a7bc12f1e3d5574c8c34429ea4ff63d, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.35811764
       e01: 0
@@ -1212,6 +1215,54 @@ MonoBehaviour:
       e11: 0.33221054
       e12: 0
       e13: 86.5621
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.34999996
+      e01: 0
+      e02: 0
+      e03: 15
+      e10: 0
+      e11: 0.34999996
+      e12: 0
+      e13: 23.05001
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.36842102
+      e01: 0
+      e02: 0
+      e03: -3.421051
+      e10: 0
+      e11: 0.36842102
+      e12: 0
+      e13: 87.8
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.6361025
+      e01: 0
+      e02: 0
+      e03: 125.86456
+      e10: 0
+      e11: 0.6361025
+      e12: 0
+      e13: -100.87311
       e20: 0
       e21: 0
       e22: 1
@@ -1330,7 +1381,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 54
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
