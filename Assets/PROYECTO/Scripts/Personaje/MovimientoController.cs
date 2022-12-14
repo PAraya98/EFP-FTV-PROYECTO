@@ -8,102 +8,49 @@ using Unity.Mathematics;
 public class MovimientoController : MonoBehaviour
 {
     // Inspector
+    [Header("Constantes del personaje")]
     //Inputs del inspector
     //  Scale Inicial de los personajes
     private Vector3 constScale;
     //  Velocidades Iniciales que no se modifican
-    [BoxGroup("Constantes del personaje")]
     public float constVelocidadCaminando = 3f;
-    [BoxGroup("Constantes del personaje")]
     public float constVelocidadCorriendo = 4f;
     //  Velocidad que pueden ser modificadas
-    [BoxGroup("Constantes del personaje")]
     public float velocidadCaminando = 3f;
-    [BoxGroup("Constantes del personaje")]
     public float velocidadCorriendo = 4f;
-    [BoxGroup("Constantes del personaje")]
     public float fuerzaDeSalto = 16f;
-
-    [BoxGroup("Constantes del personaje")]
+    public float alturaSalto = 7f;    
+    public float tiempoSalto = 1f;
     public float fuerzaDeMA = 0.1f;
-
     // Nuevo Movimiento
-    [BoxGroup("Constantes del personaje")]
     public float velPower = 1.2f;
-    [BoxGroup("Constantes del personaje")]
     public float aceleracion = 9f;
-    [BoxGroup("Constantes del personaje")]
     public float desaceleracion = 9f;
-
-    [BoxGroup("Constantes del personaje")]
     public float frictionAmount = 0.2f;
-    [BoxGroup("Constantes del personaje")]
     public float fallGravityMultiplier = 2;
-    [BoxGroup("Constantes del personaje")]
     public float gravityScale = 3.8f;
-    [BoxGroup("Constantes del personaje")]
     public float gravityStrength;
-
-    // 
-
-
-    [BoxGroup("Constantes del personaje")]
-    [ReadOnly]
     public float masa = 1f;
-    //Variables del personaje en movimiento
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
-    public float velocidadHorizontal;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
-    public float velocidadVertical;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
-    public float mirandoHacia;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
-    public bool estaMirandoDerecha = true;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
-    public bool estaEnPiso;
-    [BoxGroup("Variables en tiempo real")]
-    [ReadOnly]
-    public bool corriendo = false;
+    public float maximaVelocidadCaida = 5.5f;
+
+    // Variables en tiempo real
+    private float velocidadHorizontal;
+    private float velocidadVertical;
+    private float mirandoHacia;
+    private bool estaMirandoDerecha = true;
+    private bool estaEnPiso;
+    private bool corriendo = false;
 
     //Controles del personaje
-    [BoxGroup("Controles del personaje")]
-    [ReadOnly]
-    public float mover;
-    [BoxGroup("Controles del personaje")]
-    [ReadOnly]
-    public bool salto;
-    [BoxGroup("Controles del personaje")]
-    [ReadOnly]
-    public bool correr;
+    private float mover;
+    private bool salto;
+    private bool correr;
     //Variables privadas obtenidas desde otros gameObject
-    [BoxGroup("Dependencias")]
-    [ReadOnly]
-    [SerializeField]
     private Rigidbody2D rb;
-    [BoxGroup("Dependencias")]
-    [ReadOnly]
-    [SerializeField]
     private Collider2D playerCollider;
-    [BoxGroup("Dependencias")]
-    [ReadOnly]
-    [SerializeField]
     private CompositeCollider2D checkPiso;
-    [BoxGroup("Dependencias")]
-    [ReadOnly]
-    [SerializeField]
     private int layerPiso;
-    [BoxGroup("Dependencias")]
-    [ReadOnly]
-    [SerializeField]
     private PlayerInput playerInput;
-    [BoxGroup("Dependencias")]
-    [ReadOnly]
-    [SerializeField]
     private PisoController pisoController;
     void Start()
     {
@@ -119,7 +66,7 @@ public class MovimientoController : MonoBehaviour
         constScale = transform.localScale;
 
         //Calculate gravity strength using the formula (gravity = 2 * jumpHeight / timeToJumpApex^2) 
-        gravityStrength = -(2 * 7) / (1f * 1f);
+        gravityStrength = -(2 * alturaSalto) / (tiempoSalto * tiempoSalto);
 
         //Calculate the rigidbody's gravity scale (ie: gravity strength relative to unity's gravity value, see project settings/Physics2D)
         gravityScale = gravityStrength / Physics2D.gravity.y;
@@ -128,12 +75,7 @@ public class MovimientoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if UNITY_EDITOR
-        velocidadHorizontal = rb.velocity.x;
-        velocidadVertical = rb.velocity.y;
-        rb.mass = masa;
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-#endif
+
         if (playerInput)
         {
             mover = playerInput.actions["mover"].ReadValue<Vector2>().x;
@@ -161,11 +103,25 @@ public class MovimientoController : MonoBehaviour
             if (rb.velocity.y < 0)
             {
                 rb.gravityScale = gravityScale * fallGravityMultiplier;
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -maximaVelocidadCaida));
             }
             else
             {
                 rb.gravityScale = gravityScale;
             }
+
+            if (corriendo) Correr();
+            else Caminar();
+
+            #region
+            if (estaEnPiso || corriendo)
+            {
+
+                //float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
+                //amount *= Mathf.Sign(rb.velocity.x);
+                //rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);                
+            }
+            #endregion
 
         }
         else
@@ -211,41 +167,6 @@ public class MovimientoController : MonoBehaviour
 
     private void FixedUpdate()
     {   // Se asigna la velocidad de movimiento
-
-        if (corriendo && estaEnPiso) // Si esta corriendo en el piso
-        {
-            Correr();
-            //rb.velocity = new Vector2(mirandoHacia * velocidadCorriendo, rb.velocity.y);
-        }
-        else if (corriendo && !estaEnPiso) // Si esta corriendo en el aire xD
-        {
-            //rb.velocity = new Vector2(fuerzaDeMA * mirandoHacia * velocidadCorriendo, rb.velocity.y);
-            Correr();
-        }
-        else if (!corriendo && estaEnPiso) // Si esta caminando en el piso
-        {
-            Caminar();
-            //rb.velocity = new Vector2(mirandoHacia * velocidadCaminando, rb.velocity.y);
-        }
-        else if (!corriendo && !estaEnPiso) // Si esta caminando en el aire
-        {
-            Caminar();
-            //rb.velocity = new Vector2(fuerzaDeMA * mirandoHacia * velocidadCaminando, rb.velocity.y);
-        }
-        else
-        {
-            Debug.Log("ENTRE AL ELSE UnU");
-        }
-
-        #region
-        if (estaEnPiso || corriendo)
-        {
-
-            float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
-            amount *= Mathf.Sign(rb.velocity.x);
-            rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
-        }
-        #endregion
 
         estaEnPiso = pisoController.GetEstaEnPiso();
     }

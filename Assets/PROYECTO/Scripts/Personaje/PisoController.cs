@@ -7,22 +7,19 @@ public class PisoController : MonoBehaviour
 {
 
     [BoxGroup("Constantes")] [SerializeField] [Range(0.0f, 1f)]
-    private float porcentajeSalto = 1f;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
+    private float porcentajeSalto = 1f; 
+    //Variables en tiempo real
     private bool estaEnPiso;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
     private float fuerzaX;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
     private float fuerzaY;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+
+    //dependencias
     private Rigidbody2D personajeRb;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private Transform personaje;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private Rigidbody2D padreRb;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] private Transform jugadores;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] private Collider2D pies;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    private Transform jugadores;
+    private Collider2D pies;
+    
     private MovimientoController movimientoController;
     // Start is called before the first frame update
     void Start()
@@ -69,8 +66,9 @@ public class PisoController : MonoBehaviour
             {
                 padreRb = collision.gameObject.GetComponent<Rigidbody2D>();
                 personaje.position = new Vector3(personaje.position.x, personaje.position.y, 0f);
-                fuerzaX =  (padreRb.velocity.x / Time.deltaTime);
+                fuerzaX =  (padreRb.velocity.x * Time.deltaTime);
                 personajeRb.AddForce(new Vector2(fuerzaX, 0f));
+                Debug.Log("fuerzaX " + fuerzaX);
             }
             estaEnPiso = true;
         }
@@ -90,5 +88,6 @@ public class PisoController : MonoBehaviour
         }
     }
 }
+
 //if (pies.IsTouchingLayers(layerPiso)) -> no funciona
 // https://answers.unity.com/questions/1321643/istouchinglayers-is-not-working.html

@@ -536,6 +536,8 @@ MonoBehaviour:
   velocidadCaminando: 4.025
   velocidadCorriendo: 7.75
   fuerzaDeSalto: 10
+  alturaSalto: 7
+  tiempoSalto: 1
   fuerzaDeMA: 0.5
   velPower: 1.2
   aceleracion: 7
@@ -545,21 +547,7 @@ MonoBehaviour:
   gravityScale: 9.8
   gravityStrength: 0
   masa: 1
-  velocidadHorizontal: 0
-  velocidadVertical: 0
-  mirandoHacia: 0
-  estaMirandoDerecha: 1
-  estaEnPiso: 0
-  corriendo: 0
-  mover: 0
-  salto: 0
-  correr: 0
-  rb: {fileID: 0}
-  playerCollider: {fileID: 0}
-  checkPiso: {fileID: 0}
-  layerPiso: 0
-  playerInput: {fileID: 0}
-  pisoController: {fileID: 0}
+  maximaVelocidadCaida: 5.5
 --- !u!114 &8003803409600286191
 MonoBehaviour:
   m_ObjectHideFlags: 0
