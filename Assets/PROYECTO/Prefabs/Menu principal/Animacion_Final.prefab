@@ -888,7 +888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ENHORABUENA
+  m_text: ENHORABUENA LO HAS LOGRADO
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 605f256c6c815474b82d715c6ffe36a8, type: 2}
   m_sharedMaterial: {fileID: -3322540188282959136, guid: 605f256c6c815474b82d715c6ffe36a8, type: 2}

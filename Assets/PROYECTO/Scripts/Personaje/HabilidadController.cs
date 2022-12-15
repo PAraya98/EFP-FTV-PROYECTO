@@ -35,10 +35,13 @@ public class HabilidadController : MonoBehaviour
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
     private PlayerInput playerInput;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
-    private Transform habilidadSpawn;
+    private Transform habilidadSpawnIzq;
+    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
+    private Transform habilidadSpawnDer;
     [BoxGroup("Dependencias")] [ReadOnly] [SerializeField] 
     private CollisionController collisionController;
 
+    private MovimientoController movimientoController;
     public bool habilidadControl = true;
     // Start is called before the first frame update
     
@@ -48,7 +51,9 @@ public class HabilidadController : MonoBehaviour
         float probabilidad = 100f;
         tieneHabilidad = false;
         collisionController = gameObject.GetComponent<CollisionController>();
-        habilidadSpawn = transform.Find("habilidad spawn").transform;
+        movimientoController = gameObject.GetComponent<MovimientoController>();
+        habilidadSpawnDer = transform.Find("habilidad spawn der").transform;
+        habilidadSpawnIzq = transform.Find("habilidad spawn izq").transform;
         foreach (Habilidad habilidad in listaHabilidades)
         {
             probabilidad = probabilidad - habilidad.probabilidad;
@@ -69,7 +74,12 @@ public class HabilidadController : MonoBehaviour
         {
             if (!error && playerInput.actions["habilidad"].IsPressed() && tieneHabilidad && !collisionController.getEstaMuerto() && !collisionController.getVictoria() && habilidadControl)
             {
-                GameObject habilidad = Instantiate(habilidadActual, habilidadSpawn.position, Quaternion.identity);
+                GameObject habilidad = null;
+                if (movimientoController.GetMirandoHacia() == 1)
+                    habilidad = Instantiate(habilidadActual, habilidadSpawnDer.position, Quaternion.identity);
+                else
+                    habilidad = Instantiate(habilidadActual, habilidadSpawnIzq.position, Quaternion.identity);
+
                 habilidad.SetActive(false);
                 PersonajeData personajeData = habilidad.AddComponent<PersonajeData>();
                 personajeData.player = gameObject;

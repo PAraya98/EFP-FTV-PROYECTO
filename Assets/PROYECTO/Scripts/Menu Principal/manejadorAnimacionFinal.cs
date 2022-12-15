@@ -21,7 +21,7 @@ public class manejadorAnimacionFinal : MonoBehaviour
 
     IEnumerator startAnimacionFinal()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3.5f);
 
         List<GameObject> rootObjects = new List<GameObject>();
         Scene scene = SceneManager.GetActiveScene();
