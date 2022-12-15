@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escenario: {fileID: 913685300235658602, guid: ca289fa9af6095845835125cd2df8c58, type: 3}
   nombreEscenario: Pedro_Dev
-  escena: Pedro_Dev
+  escena: Gabriel_Dev_1
 --- !u!1 &7452001242829296145
 GameObject:
   m_ObjectHideFlags: 0
