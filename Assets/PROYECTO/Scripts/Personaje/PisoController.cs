@@ -57,8 +57,20 @@ public class PisoController : MonoBehaviour
             fuerzaY = padreRb.mass * (padreRb.velocity.y / Time.deltaTime) - personajeRb.mass * (personajeRb.velocity.y / Time.deltaTime);
             personajeRb.AddForce(new Vector2(0f, fuerzaY * porcentajeSalto));
         }
- 
     }
+
+    private void Update()
+    {
+        if (padreRb)
+        {
+            //personaje.parent = collision.transform;
+            //personaje.position = new Vector3(personaje.position.x, personaje.position.y, 0f);
+            fuerzaX = ((padreRb.velocity.x*0.9f / Time.fixedDeltaTime));
+            personajeRb.AddForce(Vector2.right * fuerzaX);
+            estaEnPiso = true;
+        }
+    }
+
     public Rigidbody2D getPadreRB()
     {
         return padreRb;
@@ -69,14 +81,7 @@ public class PisoController : MonoBehaviour
         {
             //personaje.parent = collision.transform;
             padreRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            if (padreRb && collision.gameObject.tag != "Escenario")
-            {
-                //personaje.parent = collision.transform;
-                //personaje.position = new Vector3(personaje.position.x, personaje.position.y, 0f);
-                fuerzaX = (padreRb.mass * (padreRb.velocity.x / Time.deltaTime));
-                personajeRb.AddForce(Vector2.right * fuerzaX);
-                estaEnPiso = true;
-            }
+
         }
     }
 

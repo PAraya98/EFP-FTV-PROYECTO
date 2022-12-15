@@ -112,12 +112,16 @@ public class MovimientoController : MonoBehaviour
             
             if(mover != 0)
             {
-                Debug.Log(mover);
+
                 if (corriendo) Correr();
                 else Caminar();
             }
-            Debug.Log(mover);
+            else
+            {
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            } 
             
+            /*
             #region
             if (estaEnPiso || corriendo)
             {
@@ -127,7 +131,7 @@ public class MovimientoController : MonoBehaviour
                 rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);                
             }
             #endregion
-            
+            */
 
         }
         else
