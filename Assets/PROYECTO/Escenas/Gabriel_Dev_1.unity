@@ -30625,10 +30625,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5326442231628589660, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
-      propertyPath: listaHabilidades.Array.data[8].probabilidad
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5326442231628589660, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: listaHabilidades.Array.data[9].probabilidad
       value: 2
       objectReference: {fileID: 0}

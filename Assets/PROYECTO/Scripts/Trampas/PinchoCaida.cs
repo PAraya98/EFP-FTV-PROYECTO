@@ -28,12 +28,15 @@ public class PinchoCaida : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, distanciaVision);
         if (hit.collider != null)
         {
+            Debug.Log(hit.transform.tag);
+
             if (hit.transform.tag == "Player" && caida == false)
             {
+                Debug.Log("?entre pincho2");
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
                 rb.AddForce(new Vector2(1, 0));
                 caida = true;
