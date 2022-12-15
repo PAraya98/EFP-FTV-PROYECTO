@@ -26,9 +26,11 @@ public class ControladorObjectoLento : MonoBehaviour
                 if (personajeData.ObtenerPlayerName() != listaPlayer[i].name)
                 {
                     movimientoController = listaPlayer[i].GetComponent<MovimientoController>();
-                //La lentitud se aplica en un 50% menos
+                    //La lentitud se aplica en un 50% menos
                     movimientoController.SetVelocidadCaminando(movimientoController.GetVelocidadCaminando() * lentitud);
                     movimientoController.SetVelocidadCorriendo(movimientoController.GetVelocidadCorriendo() * lentitud);
+                    movimientoController.SetControlLentitud(true);
+
                 }
             }
         }
@@ -62,6 +64,7 @@ public class ControladorObjectoLento : MonoBehaviour
                 if (personajeData.ObtenerPlayerName() != listaPlayer[i].name)
                 {
                     movimientoController = listaPlayer[i].GetComponent<MovimientoController>();
+                    movimientoController.SetControlLentitud(false);
                     movimientoController.SetVelocidadCaminando(movimientoController.GetVelocidadCaminando());
                     movimientoController.SetVelocidadCorriendo(movimientoController.GetVelocidadCorriendo());
                 }

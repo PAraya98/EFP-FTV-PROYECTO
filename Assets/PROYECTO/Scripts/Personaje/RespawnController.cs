@@ -110,7 +110,7 @@ public class RespawnController : MonoBehaviour
                 aux.name = "Player " + (i + 1);
                 agregarInput(aux, "Gamepad", new InputDevice[] { listaPlayerMando[i] });
                 listaPlayer.Insert(i, aux);
-                cinemachinetargetgroup.AddMember(aux.transform, 1, 2);
+                cinemachinetargetgroup.AddMember(aux.transform, 1, 5);
                 GameObject sonidorespawn = Instantiate(sonidoRespawn);
                 StartCoroutine(SonidoRespawn(sonidorespawn));
                 // ASIGNAR LACA AMRA PRIORIDAD 1 Y RAIDO

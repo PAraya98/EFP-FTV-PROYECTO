@@ -8,6 +8,9 @@ TagManager:
   - CameraGroup
   - Victoria
   - Muerte
+  - Bloque 1
+  - Bloque 2
+  - ControladorBloqueActivacion
   layers:
   - Default
   - TransparentFX

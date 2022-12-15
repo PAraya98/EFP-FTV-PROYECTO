@@ -133,6 +133,14 @@ public class InfoPlayerUIController : MonoBehaviour
                 //habilidadController.getSpriteHabilidad();
             }
         }
-        
+        if(contadorVictorias == 3)
+        {
+            Color color = gameObject.transform
+                          .Find("Panel - Imagen Jugador")
+                          .Find("Image - Cabeza")
+                          .GetComponent<Image>()
+                          .color;
+            GameObject.Find("Animacion_Final").GetComponent<manejadorAnimacionFinal>().InicializarTransisionFinal(color);
+        }
     }
 }

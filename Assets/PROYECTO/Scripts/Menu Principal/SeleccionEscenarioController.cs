@@ -10,7 +10,7 @@ public class SeleccionEscenarioController : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("Valores requeridos")]
-    public GameObject escenario;
+    public Texture escenario;
     public string nombreEscenario;
     public bool tieneIntro = true;
     [Scene]
@@ -25,18 +25,12 @@ public class SeleccionEscenarioController : MonoBehaviour
            .GetComponent<TextMeshProUGUI>()
            .text = nombreEscenario;
 
-        // Dibujo del escenario como prefab
-        RuntimePreviewGenerator.OrthographicMode = false;
-        //RuntimePreviewGenerator.BackgroundColor = new Color(0, 170, 228, 0);
-        RuntimePreviewGenerator.PreviewDirection = new Vector3(0, 0, 1);
-        RuntimePreviewGenerator.OrthographicMode = true;
-        RuntimePreviewGenerator.RenderSupersampling = 2.0f;
 
         gameObject.transform
             .Find("Image Container")
             .Find("Image - Escenario")
             .GetComponent<RawImage>()
-            .texture = RuntimePreviewGenerator.GenerateModelPreview(escenario.transform, 400, 400);
+            .texture = escenario;
         
         animatorIntro = GameObject.Find("Panel -Intro").GetComponent<Animator>();
     }
