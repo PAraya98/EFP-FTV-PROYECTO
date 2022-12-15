@@ -10779,7 +10779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 8003803409600286202, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
   playerInputPrefab: {fileID: 5743982669917793472, guid: b430a8ff51892d8469858a1075a5911e, type: 3}
-  contarEntradaTeclado: 1
+  contarEntradaTeclado: 0
   sonidoRespawn: {fileID: 2560772671264162778, guid: 52134d06642cf034abc5056e055abbc9, type: 3}
   tiempoDesaparicion: 0
   listaPlayer: []
