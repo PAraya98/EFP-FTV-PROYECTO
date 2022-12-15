@@ -239,7 +239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &63579127
 Transform:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63579126}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.48, y: -5.54, z: 0}
+  m_LocalPosition: {x: -13.66, y: -5.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5854,7 +5854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8003803409600286202, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_Name
-      value: Player 1
+      value: Player 2
       objectReference: {fileID: 0}
     - target: {fileID: 8003803409600286202, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_IsActive
@@ -5935,6 +5935,10 @@ PrefabInstance:
     - target: {fileID: 8785227387094958228, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_Color.r
       value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096942534586453937, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9096942534586453937, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -7267,7 +7271,7 @@ PrefabInstance:
     - target: {fileID: 2255413986829720007, guid: 7871f17f0d6848c409823450fde596bd, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 222440938}
+      objectReference: {fileID: 757394279}
     - target: {fileID: 7243578653103301365, guid: 7871f17f0d6848c409823450fde596bd, type: 3}
       propertyPath: m_Color.g
       value: 0.54901963
@@ -10548,8 +10552,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 493070448}
   - {fileID: 757394288}
+  - {fileID: 493070448}
   - {fileID: 1960670456}
   - {fileID: 1571517124}
   m_Father: {fileID: 628550586}
@@ -22283,7 +22287,7 @@ PrefabInstance:
     - target: {fileID: 2255413986829720007, guid: 7871f17f0d6848c409823450fde596bd, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 757394279}
+      objectReference: {fileID: 222440938}
     - target: {fileID: 7243578653103301365, guid: 7871f17f0d6848c409823450fde596bd, type: 3}
       propertyPath: m_Color.b
       value: 0.54901963
@@ -26016,7 +26020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8003803409600286202, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_Name
-      value: Player 2
+      value: Player 1
       objectReference: {fileID: 0}
     - target: {fileID: 8003803409600286202, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_IsActive
@@ -26116,7 +26120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9096942534586453937, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9096942534586453937, guid: 1fa8da883724932408135e3e322e36b2, type: 3}
       propertyPath: m_AnchoredPosition.x
