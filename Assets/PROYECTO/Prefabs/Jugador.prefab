@@ -111,10 +111,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2751252231889104851}
-  - component: {fileID: 3427528210727743612}
-  m_Layer: 0
+  - component: {fileID: 3882607216043434303}
+  m_Layer: 6
   m_Name: cabeza
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,19 +134,32 @@ Transform:
   m_Father: {fileID: 9096942534586453937}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3427528210727743612
-BoxCollider:
+--- !u!61 &3882607216043434303
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5787061829998764496}
-  m_Material: {fileID: 0}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: e92fa6015c15eb34bb15f410715ecd42, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0010538101, y: 0.43161488}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5628071, y: 0.017398357, z: 1}
-  m_Center: {x: -0.03216982, y: 0.43559575, z: 0}
+  m_Size: {x: 0.4417553, y: 0.030498505}
+  m_EdgeRadius: 0
 --- !u!1 &6073614634339407335
 GameObject:
   m_ObjectHideFlags: 0

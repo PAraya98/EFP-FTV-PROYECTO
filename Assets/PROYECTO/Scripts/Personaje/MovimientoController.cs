@@ -42,7 +42,7 @@ public class MovimientoController : MonoBehaviour
     private bool corriendo = false;
 
     //Controles del personaje
-    private float mover;
+    private float mover = 0f;
     private bool salto;
     private bool correr;
     //Variables privadas obtenidas desde otros gameObject
@@ -109,19 +109,25 @@ public class MovimientoController : MonoBehaviour
             {
                 rb.gravityScale = gravityScale;
             }
-
-            if (corriendo) Correr();
-            else Caminar();
-
+            
+            if(mover != 0)
+            {
+                Debug.Log(mover);
+                if (corriendo) Correr();
+                else Caminar();
+            }
+            Debug.Log(mover);
+            
             #region
             if (estaEnPiso || corriendo)
             {
 
-                //float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
-                //amount *= Mathf.Sign(rb.velocity.x);
-                //rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);                
+                float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
+                amount *= Mathf.Sign(rb.velocity.x);
+                rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);                
             }
             #endregion
+            
 
         }
         else
@@ -183,6 +189,7 @@ public class MovimientoController : MonoBehaviour
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
         rb.AddForce(movement * Vector2.right);
     }
+
     void Caminar()
     {
         float targetSpeed = mirandoHacia * velocidadCaminando;
@@ -191,6 +198,7 @@ public class MovimientoController : MonoBehaviour
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
         rb.AddForce(movement * Vector2.right);
     }
+
     void GirarPersonaje()
     {
         if (estaMirandoDerecha && mirandoHacia < 0f || !estaMirandoDerecha && mirandoHacia > 0f)
