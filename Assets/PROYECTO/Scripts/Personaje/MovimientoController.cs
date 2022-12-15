@@ -33,6 +33,10 @@ public class MovimientoController : MonoBehaviour
     public float masa = 1f;
     public float maximaVelocidadCaida = 5.5f;
 
+    //Debuff 
+    private bool controlLentitud = false;
+    private bool controlReloj = false;
+
     // Variables en tiempo real
     private float velocidadHorizontal;
     private float velocidadVertical;
@@ -92,11 +96,11 @@ public class MovimientoController : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             }
-            if (correr)
+            if (correr && !controlLentitud && !controlReloj)
             {
                 corriendo = true;
             }
-            if (!correr)
+            if (!correr && !controlLentitud && !controlReloj)
             {
                 corriendo = false;
             }
@@ -105,21 +109,25 @@ public class MovimientoController : MonoBehaviour
                 rb.gravityScale = gravityScale * fallGravityMultiplier;
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -maximaVelocidadCaida));
             }
+            if (controlReloj)
+            {
+
+            }
             else
             {
                 rb.gravityScale = gravityScale;
             }
 
-            if (corriendo) Correr();
-            else Caminar();
+            if (corriendo && !controlLentitud && !controlReloj) Correr();
+            else if(!corriendo && !controlLentitud && !controlReloj) Caminar();
 
             #region
             if (estaEnPiso || corriendo)
             {
 
-                //float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
-                //amount *= Mathf.Sign(rb.velocity.x);
-                //rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);                
+                float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
+                amount *= Mathf.Sign(rb.velocity.x);
+                rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);                
             }
             #endregion
 
@@ -134,6 +142,15 @@ public class MovimientoController : MonoBehaviour
     {
         if (playerInput) return playerInput.actions["salto"].IsPressed();
         else return false;
+    }
+     
+    public void SetControlLentitud(bool control)
+    {
+        controlLentitud = control;
+    }
+    public void SetControlReloj(bool control)
+    {
+        controlReloj = control;
     }
 
     public int GetMirandoHacia()

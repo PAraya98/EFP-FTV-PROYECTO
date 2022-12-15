@@ -31,7 +31,6 @@ public class ControladorObjetoRayo : MonoBehaviour
                 }
             }
         }
-        gameObject.transform.position = new Vector2(-2000, -2010);
         StartCoroutine(Destruccion(listaPlayer));
     }
 
@@ -56,8 +55,8 @@ public class ControladorObjetoRayo : MonoBehaviour
                 }
             }
         }
-        yield return new WaitForSeconds(15.0f);
-        
+        yield return new WaitForSeconds(2.0f);
+        habilidad.SetHabilidadControl(true); // Probar dps si funciona 
         Destroy(gameObject);
 
     }
@@ -80,6 +79,5 @@ public class ControladorObjetoRayo : MonoBehaviour
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(3).length - animator.GetCurrentAnimatorStateInfo(3).normalizedTime);
         }
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(3).length - animator.GetCurrentAnimatorStateInfo(3).normalizedTime);
-        habilidad.SetHabilidadControl(true);
     }
 }
