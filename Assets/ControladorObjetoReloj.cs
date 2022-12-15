@@ -26,10 +26,10 @@ public class ControladorObjetoReloj : MonoBehaviour
                     movimientoController = listaPlayer[i].GetComponent<MovimientoController>();
                     movimientoController.SetVelocidadCaminando(0f);
                     movimientoController.SetVelocidadCorriendo(0f);
+                    movimientoController.SetControlReloj(true);
                 }
             }
         }
-        gameObject.transform.position = new Vector2(-2000, -2010);
         StartCoroutine(Destruccion(listaPlayer));
 
     }
@@ -47,6 +47,7 @@ public class ControladorObjetoReloj : MonoBehaviour
             {
                 if (personajeData.ObtenerPlayerName() != listaPlayer[i].name)
                 {
+                    movimientoController.SetControlReloj(false);
                     movimientoController = listaPlayer[i].GetComponent<MovimientoController>();
                     movimientoController.SetVelocidadCaminando(movimientoController.GetVelocidadCaminando());
                     movimientoController.SetVelocidadCorriendo(movimientoController.GetVelocidadCorriendo());

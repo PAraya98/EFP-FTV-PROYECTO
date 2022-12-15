@@ -20,6 +20,8 @@ public class canon_proyectil : MonoBehaviour
     void Update()
     {
     }
+
+
     IEnumerator Disparar()
     {
        
