@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/PROYECTO/Escenas/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/PROYECTO/Escenas/Pedro_Dev.unity
     guid: a0e2d1d6b4de73e4294a472d9ab5c560
   - enabled: 1
