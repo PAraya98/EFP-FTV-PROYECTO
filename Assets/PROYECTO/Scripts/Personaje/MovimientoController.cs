@@ -109,10 +109,6 @@ public class MovimientoController : MonoBehaviour
                 rb.gravityScale = gravityScale * fallGravityMultiplier;
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -maximaVelocidadCaida));
             }
-            if (controlReloj)
-            {
-
-            }
             else
             {
                 rb.gravityScale = gravityScale;
