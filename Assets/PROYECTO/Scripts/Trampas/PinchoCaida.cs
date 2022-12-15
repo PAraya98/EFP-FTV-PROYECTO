@@ -39,7 +39,6 @@ public class PinchoCaida : MonoBehaviour
                 caida = true;
                 StartCoroutine(Respawn());
             }
-            Debug.Log(hit.transform.tag);
         }
     }
 

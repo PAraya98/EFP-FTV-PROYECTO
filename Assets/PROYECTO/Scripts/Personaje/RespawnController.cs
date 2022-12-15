@@ -16,8 +16,9 @@ public class RespawnController : MonoBehaviour
     public GameObject playerInputPrefab;
     [BoxGroup("Valores requeridos")]
     public bool contarEntradaTeclado = false;
-    
 
+    public GameObject sonidoRespawn;
+    public float tiempoDesaparicion;
 
     [BoxGroup("Dependencias")]
     [ReadOnly]
@@ -109,12 +110,17 @@ public class RespawnController : MonoBehaviour
                 aux.name = "Player " + (i + 1);
                 agregarInput(aux, "Gamepad", new InputDevice[] { listaPlayerMando[i] });
                 listaPlayer.Insert(i, aux);
-                cinemachinetargetgroup.AddMember(aux.transform, 1, 7);
-
+                cinemachinetargetgroup.AddMember(aux.transform, 1, 2);
+                GameObject sonidorespawn = Instantiate(sonidoRespawn);
+                StartCoroutine(SonidoRespawn(sonidorespawn));
                 // ASIGNAR LACA AMRA PRIORIDAD 1 Y RAIDO
             }
         }
     }
-
+    IEnumerator SonidoRespawn(GameObject sonidorespawn)
+    {
+        yield return new WaitForSeconds(tiempoDesaparicion);
+        Destroy(sonidorespawn);
+    }
 
 }

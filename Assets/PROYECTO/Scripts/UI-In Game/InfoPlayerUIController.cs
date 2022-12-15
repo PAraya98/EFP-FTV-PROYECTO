@@ -9,28 +9,19 @@ public class InfoPlayerUIController : MonoBehaviour
     [BoxGroup("Valores requeridos")]
     public GameObject player;
 
-    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
+    //Variables en tiempo real
     private bool estaMuerto = false;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
     private int contadorMuertes = 0;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
     private bool victoria = false;
-    [BoxGroup("Variables en tiempo real")] [ReadOnly] [SerializeField]
     private int contadorVictorias = 0;
 
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
+    // Dependencias
     private string playerName;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private TextMeshProUGUI textMuertes;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private TextMeshProUGUI textVictorias;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private TextMeshProUGUI textCooldown;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private RawImage imageHabilidad;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private CollisionController collisionController;
-    [BoxGroup("Dependencias")] [ReadOnly] [SerializeField]
     private HabilidadController habilidadController;
 
 

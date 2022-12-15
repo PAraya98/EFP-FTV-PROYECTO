@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8003803409600286198}
+  m_Father: {fileID: 9096942534586453937}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2188863213780040965
@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -95,11 +95,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5668568039488365948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8003803409600286198}
+  m_Father: {fileID: 9096942534586453937}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5787061829998764496
@@ -111,14 +111,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2751252231889104851}
-  - component: {fileID: 3427528210727743612}
-  m_Layer: 0
+  - component: {fileID: 3882607216043434303}
+  m_Layer: 6
   m_Name: cabeza
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2751252231889104851
 Transform:
   m_ObjectHideFlags: 0
@@ -127,26 +127,39 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5787061829998764496}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8003803409600286198}
+  m_Father: {fileID: 9096942534586453937}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3427528210727743612
-BoxCollider:
+--- !u!61 &3882607216043434303
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5787061829998764496}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: e92fa6015c15eb34bb15f410715ecd42, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0010538101, y: 0.43161488}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5628071, y: 0.017398357, z: 1}
-  m_Center: {x: -0.03216982, y: 0.43559575, z: 0}
+  m_Size: {x: 0.4417553, y: 0.030498505}
+  m_EdgeRadius: 0
 --- !u!1 &6073614634339407335
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +190,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8091889786321294196}
-  m_Father: {fileID: 8003803409600286198}
+  m_Father: {fileID: 9096942534586453937}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8785227387094958228
@@ -262,7 +275,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8003803409600286198}
+  m_Father: {fileID: 9096942534586453937}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5711139519764518400
@@ -278,7 +291,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02589655, y: -0.47462618}
+  m_Offset: {x: -0.02589655, y: 0.0253738}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -304,15 +317,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   porcentajeSalto: 0.85
-  estaEnPiso: 0
-  fuerzaX: 0
-  fuerzaY: 0
-  personajeRb: {fileID: 0}
-  personaje: {fileID: 0}
-  padreRb: {fileID: 0}
-  jugadores: {fileID: 0}
-  pies: {fileID: 0}
-  movimientoController: {fileID: 0}
 --- !u!1 &6276464910788178314
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6276464910788178314}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.026199996, y: 0.61100006, z: 0}
+  m_LocalPosition: {x: -0.026199996, y: 1.1110001, z: 0}
   m_LocalScale: {x: 1.3202828, y: 0.183456, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -405,7 +409,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8003803409600286198}
+  - component: {fileID: 9096942534586453937}
   - component: {fileID: 8003803409600286199}
   - component: {fileID: 8003803409600286200}
   - component: {fileID: 2237507920920833906}
@@ -421,17 +425,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8003803409600286198
-Transform:
+--- !u!224 &9096942534586453937
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8003803409600286202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.897, y: -3.352, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6015436310593648467}
   - {fileID: 3348510954506311542}
@@ -441,6 +445,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!212 &8003803409600286199
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -526,26 +535,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ff4ec1d54378044b9a96588a86e72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadCaminando: 2.025
-  velocidadCorriendo: 3.75
-  fuerzaDeSalto: 9.6
-  fuerzaDeMA: 0.8
+  constVelocidadCaminando: 4.025
+  constVelocidadCorriendo: 7.75
+  velocidadCaminando: 4.025
+  velocidadCorriendo: 7.75
+  fuerzaDeSalto: 10
+  alturaSalto: 7
+  tiempoSalto: 1
+  fuerzaDeMA: 0.5
+  velPower: 1.2
+  aceleracion: 7
+  desaceleracion: 7
+  frictionAmount: 0.2
+  fallGravityMultiplier: 3
+  gravityScale: 9.8
+  gravityStrength: 0
   masa: 1
-  velocidadHorizontal: 0
-  velocidadVertical: 0
-  mirandoHacia: 0
-  estaMirandoDerecha: 1
-  estaEnPiso: 0
-  corriendo: 0
-  mover: 0
-  salto: 0
-  correr: 0
-  rb: {fileID: 0}
-  playerCollider: {fileID: 0}
-  checkPiso: {fileID: 0}
-  layerPiso: 0
-  playerInput: {fileID: 0}
-  pisoController: {fileID: 0}
+  maximaVelocidadCaida: 5.5
 --- !u!114 &8003803409600286191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,25 +564,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5081f22cb85cf9249a729fe908d0cf5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadCaminando: 3
-  velocidadCorriendo: 4
   tiempoMuerto: 3.5
   tiempoVictoria: 3.5
-  estaEnPiso: 0
-  estaMuerto: 0
-  tiempoDeMuerte: 0
-  victoria: 0
-  tiempoDeVictoria: 0
   velocidadXReal: 0
-  animator: {fileID: 0}
-  rb: {fileID: 0}
-  layerPiso: 0
-  pies: {fileID: 0}
-  padreTransform: {fileID: 0}
-  padreRb: {fileID: 0}
-  pisoController: {fileID: 0}
-  collisionController: {fileID: 0}
-  cinemachinetargetgroup: {fileID: 0}
 --- !u!114 &5368324854088979201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,10 +615,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.031234741, y: -0.014445305}
+  m_Offset: {x: -0.031234741, y: 0.4855547}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.9375, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -653,19 +643,21 @@ MonoBehaviour:
   tiempoDeCooldown: 5
   listaHabilidades:
   - gameobject: {fileID: 7646581638649130033, guid: dd96e954544d9d845a24e1bd69537cad, type: 3}
-    probabilidad: 10
+    probabilidad: 33
   - gameobject: {fileID: 7646581638649130033, guid: abe02b7fffcbd6e4bb48fcf8973bd3a8, type: 3}
-    probabilidad: 5
+    probabilidad: 1
   - gameobject: {fileID: 7646581638649130033, guid: 6b943e7926eb40f40b8fe41ac8b5bdfc, type: 3}
-    probabilidad: 10
+    probabilidad: 1
   - gameobject: {fileID: 7646581638649130033, guid: 64b3fb40f0b6e474b9911d32a9476982, type: 3}
-    probabilidad: 30
+    probabilidad: 1
   - gameobject: {fileID: 7646581638649130033, guid: 193e563e0f3601240aff2287590342bd, type: 3}
-    probabilidad: 20
+    probabilidad: 1
   - gameobject: {fileID: 7646581638649130033, guid: 2a66bc5a7db32a9449dd63ee167a4635, type: 3}
-    probabilidad: 15
+    probabilidad: 1
   - gameobject: {fileID: 7646581638649130033, guid: 7dce4b64b6ec8ea4a8a2514c3081c90b, type: 3}
-    probabilidad: 10
+    probabilidad: 1
+  - gameobject: {fileID: 7646581638649130033, guid: cce9b3700aea1ff478992858255f0a4f, type: 3}
+    probabilidad: 61
   error: 0
   cooldown: 0
   habilidadObtenida: 0
@@ -674,3 +666,4 @@ MonoBehaviour:
   playerInput: {fileID: 0}
   habilidadSpawn: {fileID: 0}
   collisionController: {fileID: 0}
+  habilidadControl: 1

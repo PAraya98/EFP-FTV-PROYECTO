@@ -19,7 +19,6 @@ public class canon_proyectil : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     IEnumerator Disparar()
     {

@@ -8,8 +8,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/PROYECTO/Escenas/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/PROYECTO/Escenas/Pedro_Dev.unity
     guid: a0e2d1d6b4de73e4294a472d9ab5c560
+  - enabled: 1
+    path: Assets/PROYECTO/Escenas/Gabriel_Dev_1.unity
+    guid: f1e52b69a83beec4db26e6e47617f290
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9086e861accd4cf479cca5980c649fdd, type: 2}
